@@ -16,16 +16,16 @@ jobs:
       name: Lint code
       node_js: lts/*
       script: yarn lint
-    # - stage: test
-    #   name: Run tests (Node.js Current)
-    #   node_js: node
-    # - stage: test
-    #   name: Run tests (Node.js LTS)
-    #   node_js: lts/*
-    #   script:
-    #     - yarn global add codecov
-    #     - yarn test
-    #     - codecov
+    - stage: test
+      name: Run tests (Node.js Current)
+      node_js: node
+    - stage: test
+      name: Run tests (Node.js LTS)
+      node_js: lts/*
+      script:
+        - yarn global add codecov
+        - yarn test
+        - codecov
     - stage: deploy
       if: type = push AND tag IS present
       name: Deploy to npm
