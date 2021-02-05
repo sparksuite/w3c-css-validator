@@ -8,6 +8,10 @@ stages:
   - deploy
 jobs:
   include:
+    - stage: test
+      name: Verify compilation
+      node_js: lts/*
+      script: yarn compile
     # - stage: test
     #   name: Lint code
     #   node_js: lts/*
