@@ -23,9 +23,9 @@ jobs:
       name: Run tests (Node.js LTS)
       node_js: lts/*
       script:
-        # - yarn global add codecov
+        - yarn global add codecov
         - yarn test
-        # - codecov
+        - codecov
     - stage: deploy
       if: type = push AND tag IS present
       name: Deploy to npm
