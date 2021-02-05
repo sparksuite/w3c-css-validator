@@ -12,10 +12,10 @@ jobs:
       name: Verify compilation
       node_js: lts/*
       script: yarn compile
-    # - stage: test
-    #   name: Lint code
-    #   node_js: lts/*
-    #   script: yarn lint
+    - stage: test
+      name: Lint code
+      node_js: lts/*
+      script: yarn lint
     # - stage: test
     #   name: Run tests (Node.js Current)
     #   node_js: node
