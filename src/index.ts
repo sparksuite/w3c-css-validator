@@ -13,9 +13,9 @@ const cssValidator: CSSValidator = {
 	// Validates a string of CSS
 	async validateText(textToBeValidated: string, options?: ValidateTextOptions): Promise<any> {
 		// Build URL for fetching
-		const url = `https://jigsaw.w3.org/css-validator/validator?text=${encodeURIComponent(textToBeValidated)}&usermedium=${
-			options?.medium ?? 'all'
-		}&warning=${options?.warningLevel ?? 0}&output=application/json`;
+		const url = `https://jigsaw.w3.org/css-validator/validator?text=${encodeURIComponent(
+			textToBeValidated
+		)}&usermedium=${options?.medium ?? 'all'}&warning=${options?.warningLevel ?? 0}&output=application/json`;
 
 		// Build result and initialize response
 		const base: ValidateTextResultBase = {

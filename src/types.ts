@@ -2,13 +2,13 @@ interface ValidateTextOptionsBase {
 	medium?: 'all' | 'braille' | 'embossed' | 'handheld' | 'print' | 'projection' | 'screen' | 'speech' | 'tty' | 'tv';
 }
 
-interface ValidateTextOptionsWithoutWarnings extends ValidateTextOptionsBase  {
+interface ValidateTextOptionsWithoutWarnings extends ValidateTextOptionsBase {
 	warningLevel?: 0;
-};
+}
 
 interface ValidateTextOptionsWithWarnings extends ValidateTextOptionsBase {
 	warningLevel: 1 | 2 | 3;
-};
+}
 
 export interface W3CCSSValidatorResponse {
 	cssvalidation: {
@@ -25,7 +25,7 @@ export interface W3CCSSValidatorResponse {
 	};
 }
 
-export type ValidateTextOptions = ValidateTextOptionsWithWarnings |  ValidateTextOptionsWithoutWarnings;
+export type ValidateTextOptions = ValidateTextOptionsWithWarnings | ValidateTextOptionsWithoutWarnings;
 
 export interface ValidateTextResultBase {
 	valid: boolean;
@@ -44,7 +44,7 @@ export type ValidateTextResultWithWarnings = ValidateTextResultBase & {
 };
 
 export interface CSSValidator {
-	validateText(textToValidate: string, options?:  ValidateTextOptionsWithoutWarnings): Promise<ValidateTextResultBase>;
+	validateText(textToValidate: string, options?: ValidateTextOptionsWithoutWarnings): Promise<ValidateTextResultBase>;
 	validateText(
 		textToValidate: string,
 		options: ValidateTextOptionsWithWarnings
