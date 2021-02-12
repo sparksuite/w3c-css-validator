@@ -15,7 +15,7 @@ const cssValidator: CSSValidator = {
 		// Build URL for fetching
 		const url = `https://jigsaw.w3.org/css-validator/validator?text=${encodeURIComponent(
 			textToBeValidated
-		)}&usermedium=${options?.medium ?? 'all'}&warning=${options?.warningLevel ?? 0}&output=application/json`;
+		)}&usermedium=${options?.medium ?? 'all'}&warning=${options?.warningLevel ? options.warningLevel - 1 : 'no'}&output=application/json`;
 
 		// Build result and initialize response
 		const base: ValidateTextResultBase = {
