@@ -1,7 +1,7 @@
 // Imports
 import path from 'path';
 
-// Tests
+// Setup work before each test
 beforeEach(async () => {
 	await jestPuppeteer.resetPage();
 
