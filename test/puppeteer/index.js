@@ -1,3 +1,6 @@
+// Imports
+import helloWorld from '../../src';
+
 document.addEventListener('DOMContentLoaded', () => {
-	console.log('Hello world!');
+	document.title = helloWorld();
 });
