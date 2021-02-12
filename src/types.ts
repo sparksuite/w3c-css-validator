@@ -44,7 +44,7 @@ export type ValidateTextResultWithWarnings = ValidateTextResultBase & {
 };
 
 export interface CSSValidator {
-	validateText(unvalidatedStr: string, options?: ValidateTextOptionsWithBaseWarning): Promise<ValidateTextResultBase>;
+	validateText(textToValidate: string, options?: ValidateTextOptionsWithBaseWarning): Promise<ValidateTextResultBase>;
 	validateText(
 		unvalidatedStr: string,
 		options: ValidateTextOptionsWithElevatedWarning
