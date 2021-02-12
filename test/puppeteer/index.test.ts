@@ -10,6 +10,7 @@ beforeEach(async () => {
 	});
 });
 
+// Tests
 it('Loads', async () => {
 	await expect(page.title()).resolves.toMatch('Hello World!');
 });
