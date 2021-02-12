@@ -6,7 +6,7 @@ interface ValidateTextOptionsWithoutWarnings extends ValidateTextOptionsBase  {
 	warningLevel?: 0;
 };
 
-interface ValidateTextOptionsWithElevatedWarning extends ValidateTextOptionsBase {
+interface ValidateTextOptionsWithWarnings extends ValidateTextOptionsBase {
 	warningLevel: 1 | 2 | 3;
 };
 
@@ -25,7 +25,7 @@ export interface W3CCSSValidatorResponse {
 	};
 }
 
-export type ValidateTextOptions = ValidateTextOptionsWithElevatedWarning |  ValidateTextOptionsWithoutWarnings;
+export type ValidateTextOptions = ValidateTextOptionsWithWarnings |  ValidateTextOptionsWithoutWarnings;
 
 export interface ValidateTextResultBase {
 	valid: boolean;
@@ -46,7 +46,7 @@ export type ValidateTextResultWithWarnings = ValidateTextResultBase & {
 export interface CSSValidator {
 	validateText(textToValidate: string, options?:  ValidateTextOptionsWithoutWarnings): Promise<ValidateTextResultBase>;
 	validateText(
-		unvalidatedStr: string,
-		options: ValidateTextOptionsWithElevatedWarning
+		textToValidate: string,
+		options: ValidateTextOptionsWithWarnings
 	): Promise<ValidateTextResultWithWarnings>;
 }
