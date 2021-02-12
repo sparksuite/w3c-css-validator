@@ -11,9 +11,9 @@ import * as https from 'https';
 // Validates CSS using W3C's public CSS validator service
 const cssValidator: CSSValidator = {
 	// Validates a string of CSS
-	async validateText(unvalidatedStr: string, options?: ValidateTextOptions): Promise<any> {
+	async validateText(textToBeValidated: string, options?: ValidateTextOptions): Promise<any> {
 		// Build URL for fetching
-		const url = `https://jigsaw.w3.org/css-validator/validator?text=${encodeURIComponent(unvalidatedStr)}&usermedium=${
+		const url = `https://jigsaw.w3.org/css-validator/validator?text=${encodeURIComponent(textToBeValidated)}&usermedium=${
 			options?.medium ?? 'all'
 		}&warning=${options?.warningLevel ?? 0}&output=application/json`;
 
