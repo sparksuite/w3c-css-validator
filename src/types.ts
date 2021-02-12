@@ -2,7 +2,7 @@ interface ValidateTextOptionsBase {
 	medium?: 'all' | 'braille' | 'embossed' | 'handheld' | 'print' | 'projection' | 'screen' | 'speech' | 'tty' | 'tv';
 }
 
-type ValidateTextOptionsWithBaseWarning = ValidateTextOptionsBase & {
+type ValidateTextOptionsWithoutWarnings = ValidateTextOptionsBase & {
 	warningLevel?: 0;
 };
 
