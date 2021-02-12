@@ -58,7 +58,7 @@ const cssValidator: CSSValidator = {
 
 		// Throw if no validation response
 		if (!cssValidationResponse) {
-			throw new Error('Something went wrong while retrieving data from W3C CSS Validator.');
+			throw new Error('Something went wrong while retrieving data from W3C CSS Validator');
 		}
 
 		// Assign validity and errors
