@@ -62,16 +62,14 @@
 			{
 				"displayName": "Jest",
 				"testMatch": [
-					"<rootDir>/test/*.test.ts",
-					"<rootDir>/test/*.test.tsx"
+					"<rootDir>/test/*.test.ts"
 				]
 			},
 			{
 				"displayName": "Puppeteer",
 				"preset": "jest-puppeteer",
 				"testMatch": [
-					"<rootDir>/test/puppeteer/*.test.ts",
-					"<rootDir>/test/puppeteer/*.test.tsx"
+					"<rootDir>/test/puppeteer/*.test.ts"
 				]
 			}
 		]
