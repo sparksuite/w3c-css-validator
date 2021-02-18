@@ -1,5 +1,5 @@
 // Imports
-import helloWorld from '../../src';
+import helloWorld from 'w3c-css-validator';
 
 document.addEventListener('DOMContentLoaded', () => {
 	document.title = helloWorld();
