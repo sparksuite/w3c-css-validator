@@ -2,3 +2,4 @@ node_modules/
 coverage/
 dist/
 babel.config.js
+jest-puppeteer.config.js
