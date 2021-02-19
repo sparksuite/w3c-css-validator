@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Main CI
 
 on:
   push:
@@ -79,7 +79,7 @@ jobs:
   publish:
     name: Publish to npm
     runs-on: ubuntu-latest
-    if: 
+    if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js
