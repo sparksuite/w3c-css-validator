@@ -55,7 +55,7 @@ jobs:
   test:
     name: Run tests
     runs-on: ubuntu-latest
-    needs: 
+    needs:
       - compile
       - lint
       - test
