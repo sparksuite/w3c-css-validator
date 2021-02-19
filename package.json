@@ -9,8 +9,8 @@
 	],
 	"scripts": {
 		"test": "yarn link && cd test/puppeteer && yarn link \"w3c-css-validator\" && yarn install --frozen-lockfile --check-files && npx webpack && cd ../../ && jest",
-		"lint": "eslint --ext .js,.ts . && prettier --check '**/*.{ts,js,json}'",
-		"format": "eslint --fix --ext .js,.ts . && prettier --write '**/*.{ts,js,json}'",
+		"lint": "eslint --ext .js,.ts . && prettier --check '**/*.{ts,js,json,yml}'",
+		"format": "eslint --fix --ext .js,.ts . && prettier --write '**/*.{ts,js,json,yml}'",
 		"clean": "rm -rf node_modules/ coverage/ dist/",
 		"compile": "rm -rf dist/ && tsc"
 	},
