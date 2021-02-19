@@ -55,6 +55,10 @@ jobs:
   test:
     name: Run tests
     runs-on: ubuntu-latest
+    needs: 
+      - compile
+      - lint
+      - test
     strategy:
       matrix:
         node-version: [14.x, 15.x]
