@@ -3,3 +3,5 @@ coverage/
 dist/
 babel.config.js
 jest-puppeteer.config.js
+test/puppeteer/node_modules/
+test/puppeteer/dist/
