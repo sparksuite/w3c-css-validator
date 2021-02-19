@@ -9,7 +9,8 @@
 	],
 	"env": {
 		"es6": true,
-		"node": true
+		"node": true,
+		"browser": true
 	},
 	"parser": "@typescript-eslint/parser",
 	"parserOptions": {
