@@ -1,3 +1,5 @@
 node_modules/
 coverage/
 dist/
+test/puppeteer/node_modules/
+test/puppeteer/dist/
