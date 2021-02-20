@@ -3,6 +3,10 @@ import cssValidator from '../src';
 
 // Tests
 describe('#validateText()', () => {
+	afterEach(
+		() => new Promise<void>((resolve) => setTimeout(resolve, 1000))
+	);
+
 	it('Returns the validity and errors when no options are provided', async () => {
 		expect(await cssValidator.validateText('.foo { text-align: center; }')).toStrictEqual({
 			valid: true,
@@ -23,6 +27,21 @@ describe('#validateText()', () => {
 			valid: false,
 			errors: [
 				{
+					line: 1,
+					// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+					message: expect.any(String),
+				},
+			],
+		});
+	});
+
+	it('Includes warnings present in the response on the result when options specify a warning level', async () => {
+		expect(await cssValidator.validateText('.foo { font-family: Georgia; }', { warningLevel: 3 })).toStrictEqual({
+			valid: true,
+			errors: [],
+			warnings: [
+				{
+					level: 2,
 					line: 1,
 					// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 					message: expect.any(String),
