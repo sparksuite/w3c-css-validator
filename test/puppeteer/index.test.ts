@@ -1,10 +1,17 @@
-import { HTTPResponse } from 'puppeteer';
-
 // Helper functions used in multiple tests
-const waitForResponse = async () =>
-	await page.waitForResponse((response: HTTPResponse) =>
-		/^https:\/\/jigsaw\.w3\.org\/css-validator\/validator\?.+output=application\/json$/.test(response.url())
+const waitForResponse = async (options?: { expectErrors?: true; expectWarnings?: true }): Promise<void> => {
+	await page.waitForFunction(
+		"document.querySelector('#is-valid').innerText === 'true' || document.querySelector('#is-valid').innerText === 'false'"
 	);
+
+	if (options?.expectErrors) {
+		await page.waitForFunction("document.querySelector('#errors').childElementCount > 0");
+	}
+
+	if (options?.expectWarnings) {
+		await page.waitForFunction("document.querySelector('#warnings').childElementCount > 0");
+	}
+};
 
 // Setup work before each test
 beforeEach(async () => {
@@ -37,7 +44,7 @@ it('Includes errors present in the response on the result', async () => {
 	await page.type('#custom-css', '.foo { text-align: center; ');
 	await page.click('#make-call');
 
-	await waitForResponse();
+	await waitForResponse({ expectErrors: true });
 	expect(await page.evaluate(() => document.querySelector<HTMLHeadingElement>('#is-valid').innerText)).toBe('false');
 	expect(
 		await page.evaluate(() => document.querySelector<HTMLUListElement>('#errors').childElementCount)
@@ -49,7 +56,7 @@ it('Includes warnings present in the response on the result when options specify
 	await page.select('#warning-level', '3');
 	await page.click('#make-call');
 
-	await waitForResponse();
+	await waitForResponse({ expectWarnings: true });
 	expect(await page.evaluate(() => document.querySelector<HTMLHeadingElement>('#is-valid').innerText)).toBe('true');
 	expect(
 		await page.evaluate(() => document.querySelector<HTMLUListElement>('#warnings').childElementCount)
