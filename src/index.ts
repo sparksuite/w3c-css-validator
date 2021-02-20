@@ -1,12 +1,6 @@
 // Imports
-import {
-	CSSValidator,
-	ValidateTextOptions,
-	ValidateTextResultBase,
-	ValidateTextResultWithWarnings,
-	W3CCSSValidatorResponse,
-} from './types';
-import * as https from 'https';
+import { CSSValidator, ValidateTextOptions, ValidateTextResultBase, ValidateTextResultWithWarnings } from './types';
+import retrieveW3CValidation from './retrieve-w3c-validation';
 
 // Validates CSS using W3C's public CSS validator service
 const cssValidator: CSSValidator = {
@@ -15,7 +9,9 @@ const cssValidator: CSSValidator = {
 		// Build URL for fetching
 		const url = `https://jigsaw.w3.org/css-validator/validator?text=${encodeURIComponent(
 			textToBeValidated
-		)}&usermedium=${options?.medium ?? 'all'}&warning=${options?.warningLevel ? options.warningLevel - 1 : 'no'}&output=application/json`;
+		)}&usermedium=${options?.medium ?? 'all'}&warning=${
+			options?.warningLevel ? options.warningLevel - 1 : 'no'
+		}&output=application/json`;
 
 		// Build result and initialize response
 		const base: ValidateTextResultBase = {
@@ -28,33 +24,7 @@ const cssValidator: CSSValidator = {
 					warnings: [],
 			  }
 			: base;
-		let cssValidationResponse: W3CCSSValidatorResponse['cssvalidation'] | null = null;
-
-		// Detect if fetch is available and retrieve validation response accordingly
-		if (typeof window?.fetch === 'function') {
-			const res = await fetch(url);
-			const data = (await res.json()) as W3CCSSValidatorResponse;
-
-			cssValidationResponse = data.cssvalidation;
-		} else {
-			const retrieveValidationResponse = async (): Promise<W3CCSSValidatorResponse['cssvalidation']> => {
-				return new Promise((resolve) => {
-					https.get(url, (res) => {
-						let data = '';
-
-						res.on('data', (chunk) => {
-							data += chunk;
-						});
-
-						res.on('end', () => {
-							resolve((JSON.parse(data) as W3CCSSValidatorResponse).cssvalidation);
-						});
-					});
-				});
-			};
-
-			cssValidationResponse = await retrieveValidationResponse();
-		}
+		const cssValidationResponse = await retrieveW3CValidation(url);
 
 		// Throw if no validation response
 		if (!cssValidationResponse) {
