@@ -1,5 +1,5 @@
 // Imports
-import retrieveW3CValidation from './retrieve-w3c-validation';
+import retrieveValidation from './retrieve-validation';
 
 // Define types
 interface ValidateTextOptionsBase {
@@ -61,7 +61,7 @@ async function validateText(textToBeValidated: string, options?: ValidateTextOpt
 		.join('&')}`;
 
 	// Call W3C CSS Validator API and store response
-	const cssValidationResponse = await retrieveW3CValidation(url);
+	const cssValidationResponse = await retrieveValidation(url);
 
 	// Build result
 	const base: ValidateTextResultBase = {
