@@ -41,7 +41,7 @@ describe('#validateText()', () => {
 			errors: [],
 			warnings: [
 				{
-					level: 2,
+					level: 3,
 					line: 1,
 					// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 					message: expect.any(String),
