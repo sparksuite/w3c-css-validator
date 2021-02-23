@@ -11,7 +11,7 @@
 		"test": "yarn --frozen-lockfile --check-files && yarn compile && yarn link && cd test/puppeteer && yarn --frozen-lockfile --check-files && yarn link \"w3c-css-validator\" && npx webpack && cd ../../ && jest",
 		"lint": "eslint --ext .js,.ts . && prettier --check '**/*.{ts,js,json,yml}'",
 		"format": "eslint --fix --ext .js,.ts . && prettier --write '**/*.{ts,js,json,yml}'",
-		"clean": "rm -rf node_modules/ coverage/ dist/ test/puppeteer/node_modules/ test/puppeteer/dist/",
+		"clean": "git clean -X -d --force && find . -type d -empty -delete",
 		"compile": "rm -rf dist/ && tsc"
 	},
 	"repository": {
