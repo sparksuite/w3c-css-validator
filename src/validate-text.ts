@@ -60,7 +60,10 @@ async function validateText(textToBeValidated: string, options?: ValidateTextOpt
 		.map(([key, val]) => `${key}=${val}`)
 		.join('&')}`;
 
-	// Build result and initialize response
+	// Call W3C CSS Validator API and store response
+	const cssValidationResponse = await retrieveW3CValidation(url);
+
+	// Build result
 	const base: ValidateTextResultBase = {
 		valid: false,
 		errors: [],
@@ -71,15 +74,9 @@ async function validateText(textToBeValidated: string, options?: ValidateTextOpt
 				warnings: [],
 		  }
 		: base;
-	const cssValidationResponse = await retrieveW3CValidation(url);
 
-	// Throw if no validation response
-	if (!cssValidationResponse) {
-		throw new Error('Something went wrong while retrieving data from W3C CSS Validator');
-	}
-
-	// Assign validity and errors
 	result.valid = cssValidationResponse.validity;
+
 	cssValidationResponse.errors?.forEach((error) => {
 		result.errors.push({
 			line: error.line,
@@ -87,7 +84,6 @@ async function validateText(textToBeValidated: string, options?: ValidateTextOpt
 		});
 	});
 
-	// Assign warnings if called for
 	if ('warnings' in result) {
 		cssValidationResponse.warnings?.forEach((warning) => {
 			result.warnings.push({
@@ -98,7 +94,7 @@ async function validateText(textToBeValidated: string, options?: ValidateTextOpt
 		});
 	}
 
-	// Return the result
+	// Return
 	return result;
 }
 
