@@ -3,7 +3,7 @@ import * as https from 'https';
 import { W3CCSSValidatorResponse } from '.';
 
 // Utility function for retrieving response from W3C CSS Validator in a Node.js environment
-const retrieveForNode = async (url: string): Promise<W3CCSSValidatorResponse['cssvalidation']> => {
+const retrieveInNode = async (url: string): Promise<W3CCSSValidatorResponse['cssvalidation']> => {
 	return new Promise((resolve) => {
 		https.get(url, (res) => {
 			let data = '';
@@ -19,4 +19,4 @@ const retrieveForNode = async (url: string): Promise<W3CCSSValidatorResponse['cs
 	});
 };
 
-export default retrieveForNode;
+export default retrieveInNode;

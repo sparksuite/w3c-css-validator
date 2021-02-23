@@ -1,6 +1,6 @@
 // Imports
-import retrieveForBrowser from './browser';
-import retrieveForNode from './node';
+import retrieveInBrowser from './browser';
+import retrieveInNode from './node';
 
 // Define types
 export interface W3CCSSValidatorResponse {
@@ -21,10 +21,10 @@ export interface W3CCSSValidatorResponse {
 // Function that detects the appropriate HTTP request client and returns a response accordingly
 const retrieveW3CValidation = async (url: string): Promise<W3CCSSValidatorResponse['cssvalidation']> => {
 	if (typeof window?.fetch === 'function') {
-		return await retrieveForBrowser(url);
+		return await retrieveInBrowser(url);
 	}
 
-	return await retrieveForNode(url);
+	return await retrieveInNode(url);
 };
 
 export default retrieveW3CValidation;
