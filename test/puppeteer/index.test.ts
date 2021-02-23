@@ -22,7 +22,7 @@ beforeEach(async () => {
 	});
 });
 
-// Wait after each test
+// Wait after each test, see "Note" section under https://jigsaw.w3.org/css-validator/manual.html#expert
 afterEach(
 	() => new Promise<void>((resolve) => setTimeout(resolve, 1000))
 );
