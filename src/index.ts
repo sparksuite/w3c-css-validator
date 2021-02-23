@@ -7,11 +7,16 @@ const cssValidator: CSSValidator = {
 	// Validates a string of CSS
 	async validateText(textToBeValidated: string, options?: ValidateTextOptions): Promise<any> {
 		// Build URL for fetching
-		const url = `https://jigsaw.w3.org/css-validator/validator?text=${encodeURIComponent(
-			textToBeValidated
-		)}&usermedium=${options?.medium ?? 'all'}&warning=${
-			options?.warningLevel ? options.warningLevel - 1 : 'no'
-		}&output=application/json`;
+		const params = {
+			text: encodeURIComponent(textToBeValidated),
+			usermedium: options?.medium ?? 'all',
+			warning: options?.warningLevel ? options.warningLevel - 1 : 'no',
+			output: 'application/json',
+		};
+
+		const url = `https://jigsaw.w3.org/css-validator/validator?${Object.entries(params)
+			.map(([key, val]) => `${key}=${val}`)
+			.join('&')}`;
 
 		// Build result and initialize response
 		const base: ValidateTextResultBase = {
