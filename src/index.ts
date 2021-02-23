@@ -51,7 +51,7 @@ const cssValidator: CSSValidator = {
 				result.warnings.push({
 					line: warning.line,
 					message: warning.message,
-					level: warning.level,
+					level: (warning.level + 1) as 1 | 2 | 3,
 				});
 			});
 		}
