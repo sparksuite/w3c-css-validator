@@ -19,7 +19,7 @@ export interface W3CCSSValidatorResponse {
 		}[];
 		warnings?: {
 			line: number;
-			level: 1 | 2 | 3;
+			level: 0 | 1 | 2;
 			message: string;
 		}[];
 	};
