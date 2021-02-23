@@ -1,6 +1,6 @@
 // Imports
 import * as https from 'https';
-import { W3CCSSValidatorResponse } from '../types';
+import { W3CCSSValidatorResponse } from '..';
 
 // Utility function for retrieving response from W3C CSS Validator in a Node.js environment
 const retrieveForNode = async (url: string): Promise<W3CCSSValidatorResponse['cssvalidation']> => {

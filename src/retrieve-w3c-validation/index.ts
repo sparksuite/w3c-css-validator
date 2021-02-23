@@ -1,5 +1,5 @@
 // Imports
-import { W3CCSSValidatorResponse } from '../types';
+import { W3CCSSValidatorResponse } from '..';
 import retrieveForBrowser from './browser';
 import retrieveForNode from './node';
 
