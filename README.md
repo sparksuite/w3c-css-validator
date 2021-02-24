@@ -1,5 +1,5 @@
 # W3C CSS Validator
-A modern package for validating CSS using [W3C's public CSS validator service](https://jigsaw.w3.org/css-validator/). It’s goal is to simplify and standardize the API that W3C exposes, so that it adheres to newer conventions and is intuitive and easy to use.
+A modern package for validating CSS using [W3C’s public CSS validator service](https://jigsaw.w3.org/css-validator/). It’s goal is to simplify and standardize the API that W3C exposes, so that it adheres to newer conventions and is intuitive and easy to use.
 
 - 📦 Written entirely in TypeScript
 - 🔬 Thoroughly tested
@@ -60,7 +60,7 @@ Option | Default | Possible values
 Option | Explanation
 :--- | :---
 `medium` | The equivalent of the `@media` rule, applied to all of the CSS
-`warningLevel` | `0` means don't return any warnings; `1`, `2`, `3` will return warnings (if any), with higher numbers corresponding to more warnings
+`warningLevel` | `0` means don’t return any warnings; `1`, `2`, `3` will return warnings (if any), with higher numbers corresponding to more warnings
 
 Example:
 
@@ -100,13 +100,13 @@ If you ask it to return warnings via `warningLevel`, it will also include a `war
 
 ## Errors vs. warnings
 
-From W3C's [manual](https://jigsaw.w3.org/css-validator/manual.html):
+From W3C’s [manual](https://jigsaw.w3.org/css-validator/manual.html):
 
 > The validator can give you two types of messages: errors and warnings. Errors are given when the checked CSS does not respect the CSS recommendation. Warnings are different from errors since they do not state a problem regarding the specification. They are here to warn that some points might be dangerous and could lead to a strange behavior on some user agents.
 
 ## Throttling
 
-You should not call the validator more often than **1 req/sec**. From W3C's [manual](https://jigsaw.w3.org/css-validator/manual.html):
+You should not call the validator more often than **1 req/sec**. From W3C’s [manual](https://jigsaw.w3.org/css-validator/manual.html):
 
 > If you wish to call the validator programmatically for a batch of documents, please make sure that your script will sleep for at least 1 second between requests. The CSS Validation service is a free, public service for all, your respect is appreciated.
 
