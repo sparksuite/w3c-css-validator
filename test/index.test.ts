@@ -61,4 +61,29 @@ describe('#validateText()', () => {
 			errors: [],
 		});
 	});
+
+	it('Complains about missing text', async () => {
+		// @ts-expect-error: We're trying to force an error here
+		await expect(cssValidator.validateText()).rejects.toThrow('You must pass in text to be validated');
+		await expect(cssValidator.validateText('')).rejects.toThrow('You must pass in text to be validated');
+	});
+
+	it('Complains about text not being a string', async () => {
+		// @ts-expect-error: We're trying to force an error here
+		await expect(cssValidator.validateText(true)).rejects.toThrow('The text to be validated must be a string');
+	});
+
+	it('Complains about invalid medium', async () => {
+		// @ts-expect-error: We're trying to force an error here
+		await expect(cssValidator.validateText('abc', { medium: 'fake' })).rejects.toThrow(
+			'The medium must be one of the following:'
+		);
+	});
+
+	it('Complains about invalid warning level', async () => {
+		// @ts-expect-error: We're trying to force an error here
+		await expect(cssValidator.validateText('abc', { warningLevel: 'fake' })).rejects.toThrow(
+			'The warning level must be one of the following:'
+		);
+	});
 });
