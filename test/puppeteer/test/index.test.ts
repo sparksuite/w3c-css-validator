@@ -62,3 +62,13 @@ it('Includes warnings present in the response on the result when options specify
 		await page.evaluate(() => document.querySelector<HTMLUListElement>('#warnings')?.childElementCount)
 	).toBeGreaterThan(0);
 });
+
+it('Does not include warnings on the result when warnings aren’t enabled', async () => {
+	await page.type('#custom-css', '.foo { font-family: Georgia; }');
+	await page.select('#warning-level', '0');
+	await page.click('#make-call');
+
+	await waitForResponse();
+	expect(await page.evaluate(() => document.querySelector<HTMLHeadingElement>('#is-valid')?.innerText)).toBe('true');
+	expect(await page.evaluate(() => document.querySelector<HTMLUListElement>('#warnings')?.childElementCount)).toBe(0);
+});
