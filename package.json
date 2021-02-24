@@ -12,7 +12,8 @@
 		"lint": "eslint --ext .js,.ts . && prettier --check '**/*.{ts,js,json,yml}'",
 		"format": "eslint --fix --ext .js,.ts . && prettier --write '**/*.{ts,js,json,yml}'",
 		"clean": "git clean -X -d --force && find . -type d -empty -delete",
-		"compile": "rm -rf dist/ && tsc"
+		"precompile": "rm -rf dist/",
+		"compile": "tsc --project tsconfig.build.json"
 	},
 	"repository": {
 		"type": "git",
