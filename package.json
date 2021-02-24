@@ -10,6 +10,7 @@
 	"scripts": {
 		"dev": "yarn --frozen-lockfile --check-files && yarn compile && yarn link && cd test/puppeteer && yarn --frozen-lockfile --check-files && yarn link \"w3c-css-validator\" && npx webpack",
 		"test": "jest",
+		"test2": "yarn compile && for directory in ./test2/*/ ; do (yarn --cwd \"$directory\" test); done",
 		"lint": "eslint --ext .js,.ts . && prettier --check '**/*.{ts,js,json,yml}'",
 		"format": "eslint --fix --ext .js,.ts . && prettier --write '**/*.{ts,js,json,yml}'",
 		"clean": "git clean -X -d --force && find . -type d -empty -delete",
