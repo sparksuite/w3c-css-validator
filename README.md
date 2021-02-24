@@ -1,5 +1,5 @@
 # W3C CSS Validator
-A modern package for validating CSS using [W3C’s public CSS validator service](https://jigsaw.w3.org/css-validator/). It’s goal is to simplify and standardize the API that W3C exposes, so that it adheres to newer conventions and is intuitive and easy to use.
+A modern package for validating CSS using [W3C’s public CSS validator service](https://jigsaw.w3.org/css-validator/). Its goal is to simplify and standardize the API that W3C exposes, so that it adheres to newer conventions and is intuitive and easy to use.
 
 - 📦 Written entirely in TypeScript
 - 🔬 Thoroughly tested
