@@ -16,11 +16,11 @@ npm install w3c-css-validator
 Import or require:
 
 ```ts
-import validator from 'w3c-css-validator';
+import cssValidator from 'w3c-css-validator';
 ```
 
 ```ts
-const validator = require('w3c-css-validator');
+const cssValidator = require('w3c-css-validator');
 ```
 
 Validate some CSS:
