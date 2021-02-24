@@ -48,6 +48,40 @@ async function validateText(
 	options: ValidateTextOptionsWithWarnings
 ): Promise<ValidateTextResultWithWarnings>;
 async function validateText(textToBeValidated: string, options?: ValidateTextOptions): Promise<ValidateTextResult> {
+	// Validations
+	if (!textToBeValidated) {
+		throw new Error('You must pass in text to be validated');
+	}
+
+	if (typeof textToBeValidated !== 'string') {
+		throw new Error('The text to be validated must be a string');
+	}
+
+	if (options) {
+		const allowedMediums: typeof options['medium'][] = [
+			'all',
+			'braille',
+			'embossed',
+			'handheld',
+			'print',
+			'projection',
+			'screen',
+			'speech',
+			'tty',
+			'tv',
+		];
+
+		if (options.medium && !allowedMediums.includes(options.medium)) {
+			throw new Error(`The medium must be one of the following: ${allowedMediums.join(', ')}`);
+		}
+
+		const allowedWarningLevels: typeof options['warningLevel'][] = [0, 1, 2, 3];
+
+		if (options.warningLevel && !allowedWarningLevels.includes(options.warningLevel)) {
+			throw new Error(`The warning level must be one of the following: ${allowedWarningLevels.join(', ')}`);
+		}
+	}
+
 	// Build URL for fetching
 	const params = {
 		text: encodeURIComponent(textToBeValidated),
