@@ -49,4 +49,16 @@ describe('#validateText()', () => {
 			],
 		});
 	});
+
+	it('Does not include warnings on the result when warnings aren’t enabled', async () => {
+		expect(await cssValidator.validateText('.foo { font-family: Georgia; }')).toStrictEqual({
+			valid: true,
+			errors: [],
+		});
+
+		expect(await cssValidator.validateText('.foo { font-family: Georgia; }', { warningLevel: 0 })).toStrictEqual({
+			valid: true,
+			errors: [],
+		});
+	});
 });

@@ -3,19 +3,16 @@
 		"declaration": true,
 		"declarationMap": true,
 		"esModuleInterop": true,
-		"module": "commonjs",
 		"moduleResolution": "node",
 		"noImplicitAny": true,
 		"noUnusedLocals": true,
-		"outDir": "./dist",
 		"removeComments": true,
 		"resolveJsonModule": true,
 		"rootDirs": ["src", "test"],
 		"sourceMap": true,
 		"strict": true,
-		"strictNullChecks": true,
-		"target": "es6"
+		"strictNullChecks": true
 	},
-	"include": ["src/**/*", "test/*.ts"],
+	"include": ["src/**/*", "test/*", "./*.ts"],
 	"exclude": ["node_modules"]
 }
