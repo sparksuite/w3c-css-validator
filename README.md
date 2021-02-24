@@ -6,6 +6,7 @@ A modern package for validating CSS using [W3C’s public CSS validator service]
 - ⚡️ Zero dependencies
 - 🤝 Promise-based design
 - ✨ Tiny size
+- 🌎 Works in Node.js and browsers
 
 ## Getting started
 
