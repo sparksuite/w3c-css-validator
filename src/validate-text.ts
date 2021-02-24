@@ -88,6 +88,7 @@ async function validateText(textToBeValidated: string, options?: ValidateTextOpt
 		usermedium: options?.medium ?? 'all',
 		warning: options?.warningLevel ? options.warningLevel - 1 : 'no',
 		output: 'application/json',
+		profile: 'css3',
 	};
 
 	const url = `https://jigsaw.w3.org/css-validator/validator?${Object.entries(params)
