@@ -4,7 +4,7 @@ const config: Config.InitialOptions = {
 	collectCoverage: true,
 	coverageDirectory: './coverage/',
 	collectCoverageFrom: ['<rootDir>/src/**'],
-	displayName: 'Node.js tests',
+	displayName: 'Full test suite',
 	verbose: true,
 	preset: 'ts-jest',
 	testMatch: ['<rootDir>/*.test.ts'],

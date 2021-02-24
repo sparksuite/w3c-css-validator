@@ -6,4 +6,4 @@ const cssValidator = {
 	validateText,
 };
 
-export default cssValidator;
+export = cssValidator;
