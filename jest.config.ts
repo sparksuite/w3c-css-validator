@@ -1,5 +1,5 @@
 import type { Config } from '@jest/types';
-// @ts-ignore
+// @ts-expect-error: Missing types
 import presetTSJest from 'ts-jest/jest-preset';
 import presetJestPuppeteer from 'jest-puppeteer/jest-preset.json';
 import merge from 'merge';
