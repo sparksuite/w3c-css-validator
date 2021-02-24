@@ -3,7 +3,6 @@
 		"eslint:recommended",
 		"plugin:@typescript-eslint/eslint-recommended",
 		"plugin:@typescript-eslint/recommended",
-		"plugin:@typescript-eslint/recommended-requiring-type-checking",
 		"prettier"
 	],
 	"env": {
@@ -17,8 +16,7 @@
 		"sourceType": "module",
 		"ecmaFeatures": {
 			"modules": true
-		},
-		"project": ["./tsconfig.json", "./tsconfig.eslint.json"]
+		}
 	},
 	"plugins": ["@typescript-eslint"],
 	"rules": {

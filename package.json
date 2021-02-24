@@ -9,8 +9,8 @@
 	],
 	"scripts": {
 		"test": "yarn compile && for directory in ./tests/*/ ; do (yarn --cwd \"$directory\" test); done",
-		"lint": "eslint --ext .js,.ts . && prettier --check '**/*.{ts,js,json,yml}'",
-		"format": "eslint --fix --ext .js,.ts . && prettier --write '**/*.{ts,js,json,yml}'",
+		"lint": "eslint --config ./eslint.src.json --ext .js,.ts ./src && eslint --config ./eslint.tests.json --ext .js,.ts ./tests && prettier --check '**/*.{ts,js,json,yml}'",
+		"format": "eslint --config ./eslint.src.json --fix --ext .js,.ts ./src && eslint --config ./eslint.tests.json --ext .js,.ts ./tests && prettier --write '**/*.{ts,js,json,yml}'",
 		"clean": "git clean -X -d --force && find . -type d -empty -delete",
 		"precompile": "rm -rf dist/",
 		"compile": "tsc --project tsconfig.build.json"
