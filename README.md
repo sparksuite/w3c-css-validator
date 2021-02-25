@@ -113,8 +113,6 @@ You should not call the validator more often than **1 req/sec**. From W3C’s [m
 
 ## Local development
 
-To prep a just-cloned or just-cleaned repository for local development, run `yarn dev`.
-
 To test the whole project, run `yarn test`.
 
 To format the code, run `yarn format`.

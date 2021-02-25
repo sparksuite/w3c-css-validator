@@ -4,7 +4,7 @@ var fs = require('fs');
 http
 	.createServer(function (req, res) {
 		if (req.url === '/') {
-			fs.readFile('./test/puppeteer/index.html', function (_, content) {
+			fs.readFile('./index.html', function (_, content) {
 				res.writeHead(200, { 'Content-Type': 'text/html' });
 				res.end(content, 'utf-8');
 			});
