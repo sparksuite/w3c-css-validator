@@ -20,7 +20,7 @@ export interface W3CCSSValidatorResponse {
 
 // Function that detects the appropriate HTTP request client and returns a response accordingly
 const retrieveValidation = async (url: string): Promise<W3CCSSValidatorResponse['cssvalidation']> => {
-	if (typeof window?.fetch === 'function') {
+	if (typeof window !== 'undefined' && typeof window?.fetch === 'function') {
 		return await retrieveInBrowser(url);
 	}
 
