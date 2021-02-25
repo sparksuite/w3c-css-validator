@@ -32,7 +32,7 @@ Choose one cohesive thing to work on per PR, rather than lumping together unrela
 
 ## 2. Fork this repository
 
-This one is pretty straight forward. If you’re not a designated collaborator on this project (usually reserved for Sparksuite engineers), you won’t be able to create a new branch inside _this_ repository. But, by forking the repository (making a copy in your own account or organization), you’ll be able to create a new branch in the forked repository and commit your proposed changes there.
+This one is pretty straightforward. If you’re not a designated collaborator on this project (usually reserved for Sparksuite engineers), you won’t be able to create a new branch inside _this_ repository. But, by forking the repository (making a copy in your own account or organization), you’ll be able to create a new branch in the forked repository and commit your proposed changes there.
 
 ## 3. Prepare your local environment
 
@@ -56,7 +56,7 @@ Many, but not all, changes will require updates to the documentation and/or READ
 
 ## 7. Format the code
 
-To standardize the code’s stylization into our preferred format, run `yarn format` at the root of the repository. Most problems can automatically be fixed, but if there are some that can’t be, go ahead and address those manually.
+To standardize the code’s stylization into our preferred format, run `yarn format` at the root of the repository. Most problems can automatically be fixed, but if some can’t, go ahead and address those manually.
 
 ## 8. Commit your changes
 
