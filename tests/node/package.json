@@ -1,0 +1,10 @@
+{
+	"scripts": {
+		"pretest": "yarn --frozen-lock-file && RANDOM_STRING=$(LC_ALL=C tr -dc 'A-Za-z0-9' </dev/urandom | head -c 32 ; echo) && yarn remove w3c-css-validator && yarn --cwd ../../ pack --filename package-$RANDOM_STRING.tgz && yarn add file:./package-$RANDOM_STRING.tgz && rm package-$RANDOM_STRING.tgz",
+		"test": "node --unhandled-rejections=strict index.test.js",
+		"posttest": "yarn remove w3c-css-validator && yarn add link:../.."
+	},
+	"dependencies": {
+		"w3c-css-validator": "link:../.."
+	}
+}

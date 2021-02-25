@@ -1,6 +1,6 @@
 module.exports = {
 	server: {
-		command: 'node ./test/puppeteer/server.js',
+		command: 'node ./server.js',
 		port: 8080,
 	},
 };

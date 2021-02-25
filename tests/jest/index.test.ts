@@ -1,5 +1,5 @@
 // Imports
-import cssValidator from '../src';
+import cssValidator from 'w3c-css-validator';
 
 // Tests
 describe('#validateText()', () => {
