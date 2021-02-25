@@ -66,9 +66,11 @@ _Note: if your commit messages are low quality, we’ll probably end up squash-m
 
 ## 9. Open a PR
 
-Visit your forked repository and open a new pull request. Make sure the source branch is the new branch you created, and the target branch is the `master` branch on this repository.
+Visit your forked repository and open a new pull request. Make sure the source branch is the new branch you created, and the target branch is the `master` branch on this repository (not the `master` branch on your forked repository).
 
 Try to describe the changes as best as you can in the description, including why you think the change is needed, how to take advantage of the change (if applicable), your design rationale, etc.
+
+If your PR closes one or more issues, write `Closes #X` for each in the PR description (`X` being the issue number).
 
 _Note: If your implementation or tests are incomplete, we recommend opening the pull request as a draft. This helps indicate there’s still more work left to be done._
 
