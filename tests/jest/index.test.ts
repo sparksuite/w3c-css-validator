@@ -86,4 +86,11 @@ describe('#validateText()', () => {
 			'The warning level must be one of the following:'
 		);
 	});
+
+	it('Parses out unwanted characters from error messages', async () => {
+		const result = await cssValidator.validateText('.foo { foo: bar; }');
+
+		expect(result.errors.length).toBeGreaterThan(0);
+		expect(result.errors.some((error) => error.message.includes(' : '))).toBe(false);
+	});
 });
