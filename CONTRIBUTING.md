@@ -22,7 +22,7 @@ From a high-level, here’s what the contribution process looks like:
 1. Iterate through the review cycle
 1. Changes are accepted 🚀
 
-If you’ve contributed to open source projects before, this is probably a relatively familiar process. Let’s go over each step in more detail…
+It looks like a lot of steps, but it’s actually pretty easy. If you’ve contributed to open source projects before, it’s probably a familiar process. Let’s go over each step in more detail…
 
 ## 1. Choose something to contribute
 
