@@ -91,6 +91,8 @@ describe('#validateText()', () => {
 		const result = await cssValidator.validateText('.foo { foo: bar; }');
 
 		expect(result.errors.length).toBeGreaterThan(0);
-		expect(result.errors.some((error) => error.message.includes(' : '))).toBe(false);
+		for (const error of result.errors) {
+			expect(error).not.toMatch(/ : /);
+		}
 	});
 });
