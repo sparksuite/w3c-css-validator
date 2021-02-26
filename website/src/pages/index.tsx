@@ -1,3 +1,4 @@
+// Imports
 import React from 'react';
 import clsx from 'clsx';
 import Layout from '@theme/Layout';
@@ -6,6 +7,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './styles.module.css';
 
+// Define the features
 const features = [
 	{
 		title: 'Modern design',
@@ -26,6 +28,7 @@ const features = [
 	},
 ];
 
+// The individual feature component
 interface FeatureProps {
 	imageUrl: string;
 	title: string;
@@ -47,9 +50,13 @@ function Feature({ imageUrl, title, description }: FeatureProps) {
 	);
 }
 
-function Home() {
+// Function component
+const Home: React.FC = () => {
+	// Get the site config
 	const context = useDocusaurusContext();
 	const { siteConfig = {} } = context;
+
+	// Return JSX
 	return (
 		<Layout title={`Modern CSS Validation`} description='Easily validate CSS using W3C’s public CSS validator service'>
 			<header className={clsx('hero hero--primary', styles.heroBanner)}>
@@ -63,6 +70,7 @@ function Home() {
 					</div>
 				</div>
 			</header>
+
 			<main>
 				{features && features.length > 0 && (
 					<section className={styles.features}>
@@ -78,6 +86,6 @@ function Home() {
 			</main>
 		</Layout>
 	);
-}
+};
 
 export default Home;
