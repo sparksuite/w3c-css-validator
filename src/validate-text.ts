@@ -115,7 +115,7 @@ async function validateText(textToBeValidated: string, options?: ValidateTextOpt
 	cssValidationResponse.errors?.forEach((error) => {
 		result.errors.push({
 			line: error.line,
-			message: error.message,
+			message: error.message.replace(/[ :]+$/, '').trim(),
 		});
 	});
 
@@ -123,7 +123,7 @@ async function validateText(textToBeValidated: string, options?: ValidateTextOpt
 		cssValidationResponse.warnings?.forEach((warning) => {
 			result.warnings.push({
 				line: warning.line,
-				message: warning.message,
+				message: warning.message.replace(/[ :]+$/, '').trim(),
 				level: (warning.level + 1) as 1 | 2 | 3,
 			});
 		});
