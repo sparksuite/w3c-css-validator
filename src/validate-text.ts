@@ -115,7 +115,7 @@ async function validateText(textToBeValidated: string, options?: ValidateTextOpt
 	cssValidationResponse.errors?.forEach((error) => {
 		result.errors.push({
 			line: error.line,
-			message: error.message.replace(' : ', '').trim(),
+			message: error.message.replace(/[ :]+$/, '').trim(),
 		});
 	});
 
