@@ -2,7 +2,7 @@ module.exports = {
 	title: 'W3C CSS Validator',
 	tagline: 'Modern CSS validation in JS environments using W3C’s public API',
 	url: 'https://sparksuite.github.io/w3c-css-validator/',
-	baseUrl: '/',
+	baseUrl: '/w3c-css-validator/',
 	onBrokenLinks: 'throw',
 	onBrokenMarkdownLinks: 'warn',
 	favicon: 'img/favicon.ico',

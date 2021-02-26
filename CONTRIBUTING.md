@@ -36,7 +36,7 @@ This one is pretty straightforward. If you’re not a designated collaborator on
 
 ## 3. Prepare your local environment
 
-Start by cloning the forked repository, then create a new branch off of `master`. Check out that new branch, then hop over to your favorite terminal. At the root of the repository, run `yarn install --frozen-lockfile` to install dependencies.
+Start by cloning the forked repository, then create a new branch off of `master`. Check out that new branch, then hop over to your favorite terminal. At the root of the repository, run `yarn dev` to prepare the repository for local development.
 
 _Note: good branch names are usually succinct phrases that describe the change. So, for example, if a change fixes a typo in the README file, the branch name might read `fix-typo-in-readme`._
 
