@@ -1,3 +1,4 @@
+// Imports
 import React, { useRef, useState } from 'react';
 import clsx from 'clsx';
 import Layout from '@theme/Layout';
@@ -5,22 +6,37 @@ import styles from './styles.module.css';
 import cssValidator from 'w3c-css-validator';
 import Highlight, { defaultProps } from 'prism-react-renderer';
 
-function Demo() {
+// Function component
+const Demo: React.FC = () => {
+	// Initialize states/refs
 	const [result, setResult] = useState(undefined);
-	const textarea = useRef();
+	const textarea = useRef<HTMLTextAreaElement>();
 
+	// Set the default CSS
 	const defaultCSS = '.foo {\n    text-align: center;\n}';
 
-	const handleSubmit = (event) => {
+	// Handle form submissions
+	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+		// Block the actual submission
 		event.preventDefault();
+
+		// Reset result
 		setResult(undefined);
-		cssValidator.validateText(textarea.current.value).then((newResult) => setResult(newResult));
+
+		// Deconstruct and validate
+		const { current } = textarea;
+
+		if (current) {
+			cssValidator.validateText(String(current.value)).then((newResult) => setResult(newResult));
+		}
 	};
 
+	// If this is the first render, validate the initial text
 	if (!textarea.current) {
 		cssValidator.validateText(defaultCSS).then((newResult) => setResult(newResult));
 	}
 
+	// Return JSX
 	return (
 		<Layout title={`Demo`} description='Easily validate CSS using W3C’s public CSS validator service'>
 			<header className={clsx('hero hero--primary', styles.heroBanner)}>
@@ -64,8 +80,10 @@ function Demo() {
 									{({ className, style, tokens, getLineProps, getTokenProps }) => (
 										<pre className={className} style={style}>
 											{tokens.map((line, i) => (
+												// eslint-disable-next-line react/jsx-key
 												<div {...getLineProps({ line, key: i })}>
 													{line.map((token, key) => (
+														// eslint-disable-next-line react/jsx-key
 														<span {...getTokenProps({ token, key })} />
 													))}
 												</div>
@@ -80,6 +98,6 @@ function Demo() {
 			</main>
 		</Layout>
 	);
-}
+};
 
 export default Demo;

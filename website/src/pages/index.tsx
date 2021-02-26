@@ -26,7 +26,13 @@ const features = [
 	},
 ];
 
-function Feature({ imageUrl, title, description }) {
+interface FeatureProps {
+	imageUrl: string;
+	title: string;
+	description: React.ReactElement;
+}
+
+function Feature({ imageUrl, title, description }: FeatureProps) {
 	const imgUrl = useBaseUrl(imageUrl);
 	return (
 		<div className={clsx('col col--4', styles.feature)}>
