@@ -57,8 +57,8 @@ jobs:
       - run: yarn test
       - name: Codecov
         uses: codecov/codecov-action@v1
-  check-website:
-    name: Check the website
+  verify-website:
+    name: Verify website
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -87,7 +87,7 @@ jobs:
     needs:
       - lint
       - test
-      - check-website
+      - verify-website
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
     steps:
       - uses: actions/checkout@v2
@@ -117,7 +117,7 @@ jobs:
     needs:
       - lint
       - test
-      - check-website
+      - verify-website
     if: github.ref == 'refs/heads/master'
     steps:
       - uses: actions/checkout@v2
