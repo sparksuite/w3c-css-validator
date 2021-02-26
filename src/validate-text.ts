@@ -123,7 +123,7 @@ async function validateText(textToBeValidated: string, options?: ValidateTextOpt
 		cssValidationResponse.warnings?.forEach((warning) => {
 			result.warnings.push({
 				line: warning.line,
-				message: warning.message.replace(' : ', '').trim(),
+				message: warning.message.replace(/[ :]+$/, '').trim(),
 				level: (warning.level + 1) as 1 | 2 | 3,
 			});
 		});
