@@ -9,12 +9,12 @@ import TabItem from '@theme/TabItem';
 
 <Tabs
 groupId="module-type"
-defaultValue="esm"
+defaultValue="es6"
 values={[
-{label: 'ESM', value: 'esm'},
+{label: 'ES6', value: 'es6'},
 {label: 'CommonJS', value: 'cjs'},
 ]}>
-<TabItem value="esm">
+<TabItem value="es6">
 
 ```ts
 import cssValidator from 'w3c-css-validator';
