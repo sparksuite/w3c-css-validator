@@ -1,8 +1,0 @@
-{
-	"extends": ["./eslint.base.json", "plugin:react/recommended"],
-	"settings": {
-		"react": {
-			"version": "16.8"
-		}
-	}
-}
