@@ -1,4 +1,4 @@
-# <center>W3C CSS Validator</center>
+# <div align="center">W3C CSS Validator</div>
 
 <p align="center">
 <img alt="npm bundle size" src="https://img.shields.io/bundlephobia/min/w3c-css-validator">
