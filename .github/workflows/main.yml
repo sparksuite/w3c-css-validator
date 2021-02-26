@@ -78,15 +78,16 @@ jobs:
             ${{ runner.os }}-yarn-
       - run: yarn install --frozen-lockfile --prefer-offline
       - run: yarn compile
+      - run: yarn --cwd ./website install --frozen-lockfile --prefer-offline
       - run: yarn --cwd ./website type-check
       - run: yarn --cwd ./website build
   publish:
     name: Publish to npm
     runs-on: ubuntu-latest
     needs:
-      - compile
       - lint
       - test
+      - check-website
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
     steps:
       - uses: actions/checkout@v2
@@ -113,6 +114,10 @@ jobs:
   deploy:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
+    needs:
+      - lint
+      - test
+      - check-website
     if: github.ref == 'refs/heads/master'
     steps:
       - uses: actions/checkout@v2
@@ -131,8 +136,9 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-      - run: yarn dev
+      - run: yarn install --frozen-lockfile --prefer-offline
       - run: yarn compile
+      - run: yarn --cwd ./website install --frozen-lockfile --prefer-offline
       - run: yarn --cwd ./website build
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.0.0
