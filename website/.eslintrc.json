@@ -4,5 +4,8 @@
 		"react": {
 			"version": "16.8"
 		}
+	},
+	"rules": {
+		"@typescript-eslint/explicit-function-return-type": "off"
 	}
 }
