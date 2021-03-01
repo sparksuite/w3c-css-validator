@@ -1,9 +1,9 @@
 {
 	"scripts": {
-		"test": "node --unhandled-rejections=strict index.test.js",
-		"coverage": "nyc yarn test"
+		"test": "nyc node --unhandled-rejections=strict index.test.js"
 	},
 	"dependencies": {
-		"nyc": "^15.1.0"
+		"nyc": "^15.1.0",
+		"w3c-css-validator": "link:../.."
 	}
 }
