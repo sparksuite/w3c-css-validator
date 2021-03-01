@@ -9,7 +9,7 @@
 	],
 	"scripts": {
 		"dev": "yarn install --frozen-lockfile && yarn compile && yarn --cwd ./website install --frozen-lockfile",
-		"test": "yarn compile && for directory in ./tests/*/ ; do (yarn --cwd \"$directory\" test); done",
+		"test": "rugged",
 		"lint": "eslint --ext .js,.ts,.jsx,.tsx ./website && prettier --check '**/*.{ts,js,tsx,jsx,json,css,html,yml}'",
 		"format": "eslint --fix --ext .js,.ts,.jsx,.tsx ./website && prettier --write '**/*.{ts,js,tsx,jsx,json,css,html,yml}'",
 		"clean": "git clean -X -d --force && find . -type d -empty -delete",
