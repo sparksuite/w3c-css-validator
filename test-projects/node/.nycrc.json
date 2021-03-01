@@ -1,7 +1,0 @@
-{
-    "all": true,
-    "include": [
-      "**/w3c-css-validator/**"
-    ],
-    "excludeNodeModules": false
-}

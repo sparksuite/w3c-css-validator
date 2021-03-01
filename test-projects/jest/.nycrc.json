@@ -1,0 +1,6 @@
+{
+	"all": true,
+	"include": ["**/w3c-css-validator/**"],
+	"reporter": ["lcov", "clover"],
+	"excludeNodeModules": false
+}
