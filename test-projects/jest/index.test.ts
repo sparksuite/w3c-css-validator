@@ -92,7 +92,7 @@ describe('#validateText()', () => {
 
 		expect(result.errors.length).toBeGreaterThan(0);
 		for (const error of result.errors) {
-			expect(error).not.toMatch(/ : /);
+			expect(error.message).not.toMatch(/ : /);
 		}
 	});
 });
