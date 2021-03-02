@@ -1,13 +1,14 @@
 import type { Config } from '@jest/types';
 
 const config: Config.InitialOptions = {
+	displayName: 'Test suite',
 	collectCoverage: true,
 	coverageDirectory: './coverage/',
-	collectCoverageFrom: ['<rootDir>/src/**'],
-	displayName: 'Full test suite',
+	collectCoverageFrom: ['<rootDir>/src/**/*.ts'],
 	verbose: true,
 	preset: 'ts-jest',
-	testMatch: ['<rootDir>/*.test.ts'],
+	resolver: 'jest-ts-webcompat-resolver',
+	testMatch: ['<rootDir>/tests/*.test.ts'],
 };
 
 export default config;
