@@ -1,7 +1,6 @@
 {
 	"compilerOptions": {
 		"declaration": true,
-		"declarationMap": true,
 		"esModuleInterop": true,
 		"moduleResolution": "node",
 		"noImplicitAny": true,
@@ -10,7 +9,6 @@
 		"removeComments": true,
 		"resolveJsonModule": true,
 		"rootDirs": ["src", "test"],
-		"sourceMap": true,
 		"strict": true,
 		"strictNullChecks": true
 	},
