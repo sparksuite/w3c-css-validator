@@ -102,4 +102,4 @@ export default function testValidateText(validateText: ValidateText) {
     });
 }
 
-testValidateText(validateText);
+testValidateText(cssValidator.validateText);
