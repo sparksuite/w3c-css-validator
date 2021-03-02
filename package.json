@@ -9,7 +9,7 @@
 	],
 	"scripts": {
 		"dev": "yarn install --frozen-lockfile && yarn compile && yarn --cwd ./website install --frozen-lockfile",
-		"test": "rugged",
+		"test": "jest && rugged",
 		"lint": "eslint --ext .js,.ts,.jsx,.tsx ./website && prettier --check '**/*.{ts,js,tsx,jsx,json,css,html,yml}'",
 		"format": "eslint --fix --ext .js,.ts,.jsx,.tsx ./website && prettier --write '**/*.{ts,js,tsx,jsx,json,css,html,yml}'",
 		"clean": "git clean -X -d --force && find . -type d -empty -delete",
@@ -34,14 +34,19 @@
 	"homepage": "https://sparksuite.github.io/w3c-css-validator/",
 	"dependencies": {},
 	"devDependencies": {
+		"@types/jest": "^26.0.20",
 		"@types/node": "^14.14.25",
 		"@typescript-eslint/eslint-plugin": "^4.14.2",
 		"@typescript-eslint/parser": "^4.14.2",
 		"eslint": "^7.19.0",
 		"eslint-config-prettier": "^8.0.0",
 		"eslint-plugin-react": "^7.22.0",
+		"jest": "^26.6.3",
+		"jest-ts-webcompat-resolver": "^1.0.0",
 		"prettier": "^2.2.1",
 		"rugged": "^1.0.0-alpha.0",
+		"ts-jest": "^26.5.2",
+		"ts-node": "^9.1.1",
 		"typescript": "^4.1.3"
 	}
 }
