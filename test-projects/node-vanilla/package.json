@@ -1,8 +1,0 @@
-{
-	"scripts": {
-		"test": "node --unhandled-rejections=strict index.test.js"
-	},
-	"dependencies": {
-		"w3c-css-validator": "link:../.."
-	}
-}
