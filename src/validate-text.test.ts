@@ -1,8 +1,8 @@
 // Imports
-import cssValidator from '../src/index';
+import validateText from './validate-text';
 
 // Define the type separately so names don't conflict
-type ValidateText = typeof cssValidator.validateText;
+type ValidateText = typeof validateText;
 
 // Export this function so we can use it elsewhere
 export default function testValidateText(validateText: ValidateText) {
@@ -100,4 +100,4 @@ export default function testValidateText(validateText: ValidateText) {
 	});
 }
 
-testValidateText(cssValidator.validateText);
+testValidateText(validateText);
