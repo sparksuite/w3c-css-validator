@@ -2,6 +2,7 @@ import type { Config } from '@jest/types';
 
 const config: Config.InitialOptions = {
 	displayName: 'Test suite',
+	clearMocks: true,
 	collectCoverage: true,
 	coverageDirectory: './coverage/',
 	collectCoverageFrom: ['<rootDir>/src/**/*.ts'],
