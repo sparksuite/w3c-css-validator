@@ -5,7 +5,7 @@ import validateText from './validate-text';
 type ValidateText = typeof validateText;
 
 // Export this function so we can use it elsewhere
-export default function testValidateText(validateText: ValidateText) {
+export default function testValidateText(validateText: ValidateText): void {
 	describe('#validateText()', () => {
 		afterEach(
 			() => new Promise<void>((resolve) => setTimeout(resolve, 1000))
