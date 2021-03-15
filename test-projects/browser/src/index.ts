@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	// Handle result
-	const handleResult = (result: ValidateTextResultBase | ValidateTextResultWithWarnings): void => {
+	const handleResult = (result: ValidateTextResultBase | ValidateTextResultWithWarnings) => {
 		isValid.innerText = String(result.valid);
 
 		result.errors.forEach((error) => {
