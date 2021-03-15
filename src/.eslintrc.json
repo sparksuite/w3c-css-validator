@@ -1,6 +1,6 @@
 {
-	"extends": ["../eslint.base.json", "plugin:@typescript-eslint/recommended-requiring-type-checking"],
+	"extends": ["plugin:@typescript-eslint/recommended-requiring-type-checking", "../eslint.base.json"],
 	"parserOptions": {
-		"project": ["../tsconfig.json"]
+		"project": ["./tsconfig.json"]
 	}
 }
