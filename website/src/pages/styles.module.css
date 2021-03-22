@@ -37,5 +37,7 @@
 }
 
 .getStarted {
-	border: 1px solid #fff;
+	border: none;
+	background: #fff;
+	color: #000;
 }
