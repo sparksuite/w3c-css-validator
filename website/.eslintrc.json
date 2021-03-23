@@ -2,7 +2,7 @@
 	"extends": ["../eslint.base.json", "plugin:react/recommended"],
 	"settings": {
 		"react": {
-			"version": "16.8"
+			"version": "17.0"
 		}
 	},
 	"rules": {

@@ -8,7 +8,7 @@
 		"noUnusedParameters": true,
 		"removeComments": true,
 		"resolveJsonModule": true,
-		"rootDirs": ["src", "test"],
+		"rootDir": "src",
 		"strict": true,
 		"strictNullChecks": true
 	},
