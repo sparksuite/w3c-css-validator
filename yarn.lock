@@ -3962,16 +3962,17 @@ rsvp@^4.8.4:
   resolved "https://registry.yarnpkg.com/rsvp/-/rsvp-4.8.5.tgz#c8f155311d167f68f21e168df71ec5b083113734"
   integrity sha512-nfMOlASu9OnRJo1mbEk2cz0D56a1MBNrJ7orjRZQG10XDyuvwksKbuXNp6qa+kbn839HwjwhBzhFmdsaEAfauA==
 
-rugged@^1.0.0-alpha.0:
-  version "1.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/rugged/-/rugged-1.0.0-alpha.0.tgz#da43af63e3e2475105af79761c9fe22d5c3ae03f"
-  integrity sha512-iStavr86ASE6lqiyBrj/OVKXEIy8HGhq8QuseqM7QP/boEVhgV2zO978R0wmHQKtnNaHm2fjo8zwZKmAiB4trg==
+rugged@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/rugged/-/rugged-1.0.0.tgz#0198a6ccce43035329aa54be292b34905ccd73f7"
+  integrity sha512-x9p1JolKyMW1hYw/Bvte5DgdJdqADcFA6fHCUj0GzEw++P1C/7xytSSErON1MeH3Wkvk+/6s4bzLxXX2zZaj1w==
   dependencies:
     chalk "^4.1.0"
     execa "^5.0.0"
     glob "^7.1.6"
     listr "^0.14.3"
     tmp "^0.2.1"
+    ts-node "^9.1.1"
 
 run-parallel@^1.1.9:
   version "1.2.0"
