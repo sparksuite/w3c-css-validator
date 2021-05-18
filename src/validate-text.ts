@@ -107,7 +107,7 @@ async function validateText(textToBeValidated: string, options?: ValidateTextOpt
 		.join('&')}`;
 
 	// Call W3C CSS Validator API and store response
-	const cssValidationResponse = await retrieveValidation(url, options?.timeout);
+	const cssValidationResponse = await retrieveValidation(url, options?.timeout ?? 10000);
 
 	// Build result
 	const base: ValidateTextResultBase = {
