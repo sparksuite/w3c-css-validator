@@ -89,6 +89,19 @@ export default function testValidateText(validateText: ValidateText): void {
 			);
 		});
 
+		it('Complains about negative timeout', async () => {
+			await expect(validateText('abc', { timeout: -1 })).rejects.toThrow('The timeout must be a positive integer');
+		});
+
+		it('Complains about non-integer times', async () => {
+			await expect(validateText('abc', { timeout: Infinity })).rejects.toThrow('The timeout must be an integer');
+			await expect(validateText('abc', { timeout: 400.1 })).rejects.toThrow('The timeout must be an integer');
+		});
+
+		it('Throws when the timeout is passed', async () => {
+			await expect(validateText('abc', { timeout: 1 })).rejects.toThrow('The request took longer than 1ms');
+		});
+
 		it('Parses out unwanted characters from error messages', async () => {
 			const result = await validateText('.foo { foo: bar; }');
 
