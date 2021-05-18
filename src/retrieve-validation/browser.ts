@@ -21,7 +21,7 @@ const retrieveInBrowser = async (url: string, timeout: number): Promise<W3CCSSVa
 			throw new Error(`The request took longer than ${timeout}ms`);
 		}
 
-		throw new Error(err);
+		throw err;
 	}
 
 	if (!res) {
