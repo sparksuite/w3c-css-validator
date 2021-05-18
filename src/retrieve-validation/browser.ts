@@ -2,7 +2,7 @@
 import { W3CCSSValidatorResponse } from '.';
 
 // Utility function for retrieving response from W3C CSS Validator in a browser environment
-const retrieveInBrowser = async (url: string, timeout?: number): Promise<W3CCSSValidatorResponse['cssvalidation']> => {
+const retrieveInBrowser = async (url: string, timeout: number): Promise<W3CCSSValidatorResponse['cssvalidation']> => {
 	const controller = new AbortController();
 
 	if (timeout !== undefined) {
@@ -17,9 +17,7 @@ const retrieveInBrowser = async (url: string, timeout?: number): Promise<W3CCSSV
 		res = await fetch(url, { signal: timeout !== undefined ? controller.signal : undefined });
 	} catch (err) {
 		if ((err as Error).name === 'AbortError') {
-			throw new Error(
-				`The request took longer than ${timeout !== undefined ? `${timeout}ms` : "the browser's default timeout"}`
-			);
+			throw new Error(`The request took longer than ${timeout}ms`);
 		}
 
 		throw new Error(err);

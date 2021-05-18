@@ -3,7 +3,7 @@ import * as https from 'https';
 import { W3CCSSValidatorResponse } from '.';
 
 // Utility function for retrieving response from W3C CSS Validator in a Node.js environment
-const retrieveInNode = async (url: string, timeout?: number): Promise<W3CCSSValidatorResponse['cssvalidation']> => {
+const retrieveInNode = async (url: string, timeout: number): Promise<W3CCSSValidatorResponse['cssvalidation']> => {
 	return new Promise((resolve, reject) => {
 		const req = https.get(
 			url,
@@ -24,11 +24,7 @@ const retrieveInNode = async (url: string, timeout?: number): Promise<W3CCSSVali
 		);
 
 		req.on('timeout', () => {
-			reject(
-				new Error(
-					`The request took longer than ${timeout !== undefined ? `${timeout}ms` : "the browser's default timeout"}`
-				)
-			);
+			reject(new Error(`The request took longer than ${timeout}ms`));
 		});
 	});
 };
