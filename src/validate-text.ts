@@ -83,7 +83,7 @@ async function validateText(textToBeValidated: string, options?: ValidateTextOpt
 			throw new Error(`The warning level must be one of the following: ${allowedWarningLevels.join(', ')}`);
 		}
 
-		// Validate timeout options
+		// Validate timeout option
 		if (options.timeout !== undefined && !Number.isInteger(options.timeout)) {
 			throw new Error('The timeout must be an integer');
 		}
