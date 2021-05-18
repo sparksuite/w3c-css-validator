@@ -16,8 +16,8 @@ const retrieveInBrowser = async (url: string, timeout: number): Promise<W3CCSSVa
 
 	try {
 		res = await fetch(url, { signal: controller.signal });
-	} catch (err) {
-		if ((err as Error).name === 'AbortError') {
+	} catch (err: unknown) {
+		if (err instanceof Error && err.name === 'AbortError') {
 			throw new Error(`The request took longer than ${timeout}ms`);
 		}
 
