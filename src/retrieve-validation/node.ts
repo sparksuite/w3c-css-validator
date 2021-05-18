@@ -5,6 +5,7 @@ import { W3CCSSValidatorResponse } from '.';
 // Utility function for retrieving response from W3C CSS Validator in a Node.js environment
 const retrieveInNode = async (url: string, timeout: number): Promise<W3CCSSValidatorResponse['cssvalidation']> => {
 	return new Promise((resolve, reject) => {
+		// Attempt to fetch CSS validation
 		const req = https.get(
 			url,
 			{
@@ -23,6 +24,7 @@ const retrieveInNode = async (url: string, timeout: number): Promise<W3CCSSValid
 			}
 		);
 
+		// Listen for timeout event and reject in callback
 		req.on('timeout', () => {
 			reject(new Error(`The request took longer than ${timeout}ms`));
 		});
