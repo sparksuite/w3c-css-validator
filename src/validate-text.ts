@@ -4,6 +4,7 @@ import retrieveValidation from './retrieve-validation';
 // Define types
 interface ValidateTextOptionsBase {
 	medium?: 'all' | 'braille' | 'embossed' | 'handheld' | 'print' | 'projection' | 'screen' | 'speech' | 'tty' | 'tv';
+	timeout?: number;
 }
 
 interface ValidateTextOptionsWithoutWarnings extends ValidateTextOptionsBase {
@@ -58,6 +59,7 @@ async function validateText(textToBeValidated: string, options?: ValidateTextOpt
 	}
 
 	if (options) {
+		// Validate medium option
 		const allowedMediums: typeof options['medium'][] = [
 			'all',
 			'braille',
@@ -80,6 +82,15 @@ async function validateText(textToBeValidated: string, options?: ValidateTextOpt
 		if (options.warningLevel && !allowedWarningLevels.includes(options.warningLevel)) {
 			throw new Error(`The warning level must be one of the following: ${allowedWarningLevels.join(', ')}`);
 		}
+
+		// Validate timeout option
+		if (options.timeout !== undefined && !Number.isInteger(options.timeout)) {
+			throw new Error('The timeout must be an integer');
+		}
+
+		if (options.timeout && options.timeout < 0) {
+			throw new Error('The timeout must be a positive integer');
+		}
 	}
 
 	// Build URL for fetching
@@ -96,7 +107,7 @@ async function validateText(textToBeValidated: string, options?: ValidateTextOpt
 		.join('&')}`;
 
 	// Call W3C CSS Validator API and store response
-	const cssValidationResponse = await retrieveValidation(url);
+	const cssValidationResponse = await retrieveValidation(url, options?.timeout ?? 10000);
 
 	// Build result
 	const base: ValidateTextResultBase = {
