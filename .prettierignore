@@ -3,3 +3,4 @@ coverage/
 dist/
 build/
 .docusaurus/
+public/css/error.css
