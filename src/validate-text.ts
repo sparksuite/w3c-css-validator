@@ -1,54 +1,25 @@
 // Imports
+import buildRequestURL from './build-request-url';
 import retrieveValidation from './retrieve-validation';
-
-// Define types
-interface ValidateTextOptionsBase {
-	medium?: 'all' | 'braille' | 'embossed' | 'handheld' | 'print' | 'projection' | 'screen' | 'speech' | 'tty' | 'tv';
-	timeout?: number;
-}
-
-interface ValidateTextOptionsWithoutWarnings extends ValidateTextOptionsBase {
-	warningLevel?: 0;
-}
-
-interface ValidateTextOptionsWithWarnings extends ValidateTextOptionsBase {
-	warningLevel: 1 | 2 | 3;
-}
-
-type ValidateTextOptions = ValidateTextOptionsWithWarnings | ValidateTextOptionsWithoutWarnings;
-
-interface ValidateTextResultBase {
-	valid: boolean;
-	errors: {
-		line: number;
-		message: string;
-	}[];
-}
-
-interface ValidateTextResultWithWarnings extends ValidateTextResultBase {
-	warnings: {
-		line: number;
-		level: 1 | 2 | 3;
-		message: string;
-	}[];
-}
-
-interface ValidateTextResultWithoutWarnings extends ValidateTextResultBase {
-	warnings?: never;
-}
-
-type ValidateTextResult = ValidateTextResultWithWarnings | ValidateTextResultWithoutWarnings;
+import { OptionsWithoutWarnings, OptionsWithWarnings, Options } from './types/options';
+import {
+	ValidateTextResultWithoutWarnings,
+	ValidateTextResultWithWarnings,
+	ValidateTextResult,
+	ValidateTextResultBase,
+} from './types/result';
+import validateOptions from './validate-options';
 
 // Validates a string of CSS
 async function validateText(
 	textToValidate: string,
-	options?: ValidateTextOptionsWithoutWarnings
+	options?: OptionsWithoutWarnings
 ): Promise<ValidateTextResultWithoutWarnings>;
 async function validateText(
 	textToValidate: string,
-	options: ValidateTextOptionsWithWarnings
+	options: OptionsWithWarnings
 ): Promise<ValidateTextResultWithWarnings>;
-async function validateText(textToBeValidated: string, options?: ValidateTextOptions): Promise<ValidateTextResult> {
+async function validateText(textToBeValidated: string, options?: Options): Promise<ValidateTextResult> {
 	// Validations
 	if (!textToBeValidated) {
 		throw new Error('You must pass in text to be validated');
@@ -58,53 +29,14 @@ async function validateText(textToBeValidated: string, options?: ValidateTextOpt
 		throw new Error('The text to be validated must be a string');
 	}
 
-	if (options) {
-		// Validate medium option
-		const allowedMediums: typeof options['medium'][] = [
-			'all',
-			'braille',
-			'embossed',
-			'handheld',
-			'print',
-			'projection',
-			'screen',
-			'speech',
-			'tty',
-			'tv',
-		];
-
-		if (options.medium && !allowedMediums.includes(options.medium)) {
-			throw new Error(`The medium must be one of the following: ${allowedMediums.join(', ')}`);
-		}
-
-		const allowedWarningLevels: typeof options['warningLevel'][] = [0, 1, 2, 3];
-
-		if (options.warningLevel && !allowedWarningLevels.includes(options.warningLevel)) {
-			throw new Error(`The warning level must be one of the following: ${allowedWarningLevels.join(', ')}`);
-		}
-
-		// Validate timeout option
-		if (options.timeout !== undefined && !Number.isInteger(options.timeout)) {
-			throw new Error('The timeout must be an integer');
-		}
-
-		if (options.timeout && options.timeout < 0) {
-			throw new Error('The timeout must be a positive integer');
-		}
-	}
+	validateOptions(options);
 
 	// Build URL for fetching
-	const params = {
-		text: encodeURIComponent(textToBeValidated),
-		usermedium: options?.medium ?? 'all',
-		warning: options?.warningLevel ? options.warningLevel - 1 : 'no',
-		output: 'application/json',
-		profile: 'css3',
-	};
-
-	const url = `https://jigsaw.w3.org/css-validator/validator?${Object.entries(params)
-		.map(([key, val]) => `${key}=${val}`)
-		.join('&')}`;
+	const url = buildRequestURL({
+		text: textToBeValidated,
+		medium: options?.medium,
+		warningLevel: options?.warningLevel,
+	});
 
 	// Call W3C CSS Validator API and store response
 	const cssValidationResponse = await retrieveValidation(url, options?.timeout ?? 10000);
