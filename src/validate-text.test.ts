@@ -77,27 +77,6 @@ export default function testValidateText(validateText: ValidateText): void {
 			await expect(validateText(true)).rejects.toThrow('The text to be validated must be a string');
 		});
 
-		it('Complains about invalid medium', async () => {
-			// @ts-expect-error: We're trying to force an error here
-			await expect(validateText('abc', { medium: 'fake' })).rejects.toThrow('The medium must be one of the following:');
-		});
-
-		it('Complains about invalid warning level', async () => {
-			// @ts-expect-error: We're trying to force an error here
-			await expect(validateText('abc', { warningLevel: 'fake' })).rejects.toThrow(
-				'The warning level must be one of the following:'
-			);
-		});
-
-		it('Complains about negative timeout', async () => {
-			await expect(validateText('abc', { timeout: -1 })).rejects.toThrow('The timeout must be a positive integer');
-		});
-
-		it('Complains about non-integer times', async () => {
-			await expect(validateText('abc', { timeout: Infinity })).rejects.toThrow('The timeout must be an integer');
-			await expect(validateText('abc', { timeout: 400.1 })).rejects.toThrow('The timeout must be an integer');
-		});
-
 		it('Throws when the timeout is passed', async () => {
 			await expect(validateText('abc', { timeout: 1 })).rejects.toThrow('The request took longer than 1ms');
 		});
