@@ -27,13 +27,15 @@ export default function testValidateURL(validateURL: ValidateURL): void {
 		});
 
 		it('Includes errors present in the response on the result', async () => {
-			expect(await validateURL('https://rawcdn.githack.com/sparksuite/w3c-css-validator/6cf7b194b4f0b246678ed5101a2b6f0fb2918361/public/css/error.css')).toStrictEqual({
+			expect(await validateURL('https://rawcdn.githack.com/sparksuite/w3c-css-validator/76341fda26fd16021155ea853d6e4d7db0e194c4/public/css/error.css')).toStrictEqual({
 				valid: false,
 				errors: [
 					{
 						line: 1,
 						// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 						message: expect.any(String),
+						// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+						url: expect.any(String),
 					},
 				],
 			});
@@ -46,9 +48,11 @@ export default function testValidateURL(validateURL: ValidateURL): void {
 				warnings: [
 					{
 						level: 3,
-						line: 1,
+						line: 2,
 						// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 						message: expect.any(String),
+						// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+						url: expect.any(String),
 					},
 				],
 			});
@@ -82,7 +86,7 @@ export default function testValidateURL(validateURL: ValidateURL): void {
 		});
 
 		it('Parses out unwanted characters from error messages', async () => {
-			const result = await validateURL('https://rawcdn.githack.com/sparksuite/w3c-css-validator/6cf7b194b4f0b246678ed5101a2b6f0fb2918361/public/css/error.css');
+			const result = await validateURL('https://rawcdn.githack.com/sparksuite/w3c-css-validator/76341fda26fd16021155ea853d6e4d7db0e194c4/public/css/error.css');
 
 			expect(result.errors.length).toBeGreaterThan(0);
 			for (const error of result.errors) {
