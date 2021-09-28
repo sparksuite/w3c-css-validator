@@ -5,3 +5,4 @@ build/
 .docusaurus/
 babel.config.js
 jest-puppeteer.config.js
+public/css/error.css
