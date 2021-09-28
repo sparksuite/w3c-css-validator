@@ -15,10 +15,10 @@ describe('#buildRequestURL()', () => {
 		);
 	});
 
-	it('Handles parameters with uri value', () => {
+	it('Handles parameters with URL value', () => {
 		expect(
 			buildRequestURL({
-				uri: 'https://raw.githubusercontent.com/sparksuite/w3c-css-validator/master/public/css/valid.css',
+				url: 'https://raw.githubusercontent.com/sparksuite/w3c-css-validator/master/public/css/valid.css',
 				medium: undefined,
 				warningLevel: undefined,
 			})
@@ -39,17 +39,17 @@ describe('#buildRequestURL()', () => {
 		);
 	});
 
-	it('Complains if text and uri values are provided simultaneously', () => {
+	it('Complains if text and URL values are provided simultaneously', () => {
 		expect(() =>
 			buildRequestURL(
-				// @ts-expect-error: We're trying to force an error here
 				{
 					text: '.foo { text-align: center; }',
-					uri: 'https://raw.githubusercontent.com/sparksuite/w3c-css-validator/master/public/css/valid.css',
+					// @ts-expect-error: We're trying to force an error here
+					url: 'https://raw.githubusercontent.com/sparksuite/w3c-css-validator/master/public/css/valid.css',
 					medium: undefined,
 					warningLevel: undefined,
 				}
 			)
-		).toThrow('Only a text or a URI value can be provided');
+		).toThrow('Only a text or a URL value can be provided');
 	});
 });

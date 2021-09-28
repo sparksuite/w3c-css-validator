@@ -9,11 +9,13 @@ export interface W3CCSSValidatorResponse {
 		errors?: {
 			line: number;
 			message: string;
+			source?: string;
 		}[];
 		warnings?: {
 			line: number;
 			level: 0 | 1 | 2;
 			message: string;
+			source?: string;
 		}[];
 	};
 }

@@ -10,9 +10,9 @@ interface TextParameters extends ParametersBase {
 	uri?: never;
 }
 
-interface URIParameters extends ParametersBase {
-	uri: string;
+interface URLParameters extends ParametersBase {
+	url: string;
 	text?: never;
 }
 
-export type Parameters = TextParameters | URIParameters;
+export type Parameters = TextParameters | URLParameters;
