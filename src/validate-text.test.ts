@@ -27,7 +27,7 @@ export default function testValidateText(validateText: ValidateText): void {
 		});
 
 		it('Includes errors present in the response on the result', async () => {
-			expect(await validateText('.foo { text-align: center; ')).toStrictEqual({
+			expect(await validateText('.foo { text-align: invalid-value; }')).toStrictEqual({
 				valid: false,
 				errors: [
 					{
