@@ -41,7 +41,7 @@ it('Returns the validity', async () => {
 });
 
 it('Includes errors present in the response on the result', async () => {
-	await page.type('#custom-css', '.foo { text-align: center; ');
+	await page.type('#custom-css', '.foo { text-align: invalid-value; }');
 	await page.click('#make-call');
 
 	await waitForResponse({ expectErrors: true });
