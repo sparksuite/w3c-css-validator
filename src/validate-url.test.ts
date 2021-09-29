@@ -12,14 +12,23 @@ export default function testValidateURL(validateURL: ValidateURL): void {
 		);
 
 		it('Returns the validity and errors when no options are provided', async () => {
-			expect(await validateURL('https://rawcdn.githack.com/sparksuite/w3c-css-validator/6cf7b194b4f0b246678ed5101a2b6f0fb2918361/public/css/valid.css')).toStrictEqual({
+			expect(
+				await validateURL(
+					'https://rawcdn.githack.com/sparksuite/w3c-css-validator/6cf7b194b4f0b246678ed5101a2b6f0fb2918361/public/css/valid.css'
+				)
+			).toStrictEqual({
 				valid: true,
 				errors: [],
 			});
 		});
 
 		it('Returns the validity, errors, and warnings when a warning level option is provided', async () => {
-			expect(await validateURL('https://rawcdn.githack.com/sparksuite/w3c-css-validator/6cf7b194b4f0b246678ed5101a2b6f0fb2918361/public/css/valid.css', { warningLevel: 1 })).toStrictEqual({
+			expect(
+				await validateURL(
+					'https://rawcdn.githack.com/sparksuite/w3c-css-validator/6cf7b194b4f0b246678ed5101a2b6f0fb2918361/public/css/valid.css',
+					{ warningLevel: 1 }
+				)
+			).toStrictEqual({
 				valid: true,
 				errors: [],
 				warnings: [],
@@ -27,7 +36,11 @@ export default function testValidateURL(validateURL: ValidateURL): void {
 		});
 
 		it('Includes errors present in the response on the result', async () => {
-			expect(await validateURL('https://rawcdn.githack.com/sparksuite/w3c-css-validator/76341fda26fd16021155ea853d6e4d7db0e194c4/public/css/error.css')).toStrictEqual({
+			expect(
+				await validateURL(
+					'https://rawcdn.githack.com/sparksuite/w3c-css-validator/76341fda26fd16021155ea853d6e4d7db0e194c4/public/css/error.css'
+				)
+			).toStrictEqual({
 				valid: false,
 				errors: [
 					{
@@ -42,7 +55,12 @@ export default function testValidateURL(validateURL: ValidateURL): void {
 		});
 
 		it('Includes warnings present in the response on the result when options specify a warning level', async () => {
-			expect(await validateURL('https://rawcdn.githack.com/sparksuite/w3c-css-validator/6cf7b194b4f0b246678ed5101a2b6f0fb2918361/public/css/warning.css', { warningLevel: 3 })).toStrictEqual({
+			expect(
+				await validateURL(
+					'https://rawcdn.githack.com/sparksuite/w3c-css-validator/6cf7b194b4f0b246678ed5101a2b6f0fb2918361/public/css/warning.css',
+					{ warningLevel: 3 }
+				)
+			).toStrictEqual({
 				valid: true,
 				errors: [],
 				warnings: [
@@ -59,12 +77,21 @@ export default function testValidateURL(validateURL: ValidateURL): void {
 		});
 
 		it('Does not include warnings on the result when warnings aren’t enabled', async () => {
-			expect(await validateURL('https://rawcdn.githack.com/sparksuite/w3c-css-validator/6cf7b194b4f0b246678ed5101a2b6f0fb2918361/public/css/warning.css')).toStrictEqual({
+			expect(
+				await validateURL(
+					'https://rawcdn.githack.com/sparksuite/w3c-css-validator/6cf7b194b4f0b246678ed5101a2b6f0fb2918361/public/css/warning.css'
+				)
+			).toStrictEqual({
 				valid: true,
 				errors: [],
 			});
 
-			expect(await validateURL('https://rawcdn.githack.com/sparksuite/w3c-css-validator/6cf7b194b4f0b246678ed5101a2b6f0fb2918361/public/css/warning.css', { warningLevel: 0 })).toStrictEqual({
+			expect(
+				await validateURL(
+					'https://rawcdn.githack.com/sparksuite/w3c-css-validator/6cf7b194b4f0b246678ed5101a2b6f0fb2918361/public/css/warning.css',
+					{ warningLevel: 0 }
+				)
+			).toStrictEqual({
 				valid: true,
 				errors: [],
 			});
@@ -82,11 +109,18 @@ export default function testValidateURL(validateURL: ValidateURL): void {
 		});
 
 		it('Throws when the timeout is passed', async () => {
-			await expect(validateURL('https://rawcdn.githack.com/sparksuite/w3c-css-validator/6cf7b194b4f0b246678ed5101a2b6f0fb2918361/public/css/valid.css', { timeout: 1 })).rejects.toThrow('The request took longer than 1ms');
+			await expect(
+				validateURL(
+					'https://rawcdn.githack.com/sparksuite/w3c-css-validator/6cf7b194b4f0b246678ed5101a2b6f0fb2918361/public/css/valid.css',
+					{ timeout: 1 }
+				)
+			).rejects.toThrow('The request took longer than 1ms');
 		});
 
 		it('Parses out unwanted characters from error messages', async () => {
-			const result = await validateURL('https://rawcdn.githack.com/sparksuite/w3c-css-validator/76341fda26fd16021155ea853d6e4d7db0e194c4/public/css/error.css');
+			const result = await validateURL(
+				'https://rawcdn.githack.com/sparksuite/w3c-css-validator/76341fda26fd16021155ea853d6e4d7db0e194c4/public/css/error.css'
+			);
 
 			expect(result.errors.length).toBeGreaterThan(0);
 			for (const error of result.errors) {

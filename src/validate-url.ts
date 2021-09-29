@@ -59,7 +59,7 @@ async function validateURL(urlToBeValidated: string, options?: Options): Promise
 		result.errors.push({
 			line: error.line,
 			message: error.message.replace(/[ :]+$/, '').trim(),
-            url: error.source ?? null,
+			url: error.source ?? null,
 		});
 	});
 
@@ -69,7 +69,7 @@ async function validateURL(urlToBeValidated: string, options?: Options): Promise
 				line: warning.line,
 				message: warning.message.replace(/[ :]+$/, '').trim(),
 				level: (warning.level + 1) as 1 | 2 | 3,
-                url: warning.source ?? null,
+				url: warning.source ?? null,
 			});
 		});
 	}

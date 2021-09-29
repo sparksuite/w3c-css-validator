@@ -41,15 +41,13 @@ describe('#buildRequestURL()', () => {
 
 	it('Complains if text and URL values are provided simultaneously', () => {
 		expect(() =>
-			buildRequestURL(
-				{
-					text: '.foo { text-align: center; }',
-					// @ts-expect-error: We're trying to force an error here
-					url: 'https://raw.githubusercontent.com/sparksuite/w3c-css-validator/master/public/css/valid.css',
-					medium: undefined,
-					warningLevel: undefined,
-				}
-			)
+			buildRequestURL({
+				text: '.foo { text-align: center; }',
+				// @ts-expect-error: We're trying to force an error here
+				url: 'https://raw.githubusercontent.com/sparksuite/w3c-css-validator/master/public/css/valid.css',
+				medium: undefined,
+				warningLevel: undefined,
+			})
 		).toThrow('Only a text or a URL value can be provided');
 	});
 });
