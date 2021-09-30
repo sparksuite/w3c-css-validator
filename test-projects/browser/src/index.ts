@@ -1,7 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-assignment */
 // Imports
 import cssValidator from 'w3c-css-validator';
-import { ValidateTextResultBase, ValidateTextResultWithWarnings } from '../../../dist/types';
+import {
+	ValidateTextResultBase,
+	ValidateTextResultWithWarnings,
+	ValidateURLResultBase,
+	ValidateURLResultWithWarnings,
+} from '../../../dist/types/result';
 
 // Wait until DOM content is available to attempt to make changes
 document.addEventListener('DOMContentLoaded', () => {
@@ -15,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	const errors = document.querySelector<HTMLUListElement>('#errors');
 	const warnings = document.querySelector<HTMLUListElement>('#warnings');
 	const warningLevelSelect = document.querySelector<HTMLSelectElement>('#warning-level');
+	const methodSelect = document.querySelector<HTMLSelectElement>('#method');
 
 	// Throw if any element is not present
 	if (!makeCall) {
@@ -41,8 +47,18 @@ document.addEventListener('DOMContentLoaded', () => {
 		throw new Error('Warning level select should be present');
 	}
 
+	if (!methodSelect) {
+		throw new Error('Method select should be present');
+	}
+
 	// Handle result
-	const handleResult = (result: ValidateTextResultBase | ValidateTextResultWithWarnings): void => {
+	const handleResult = (
+		result:
+			| ValidateTextResultBase
+			| ValidateTextResultWithWarnings
+			| ValidateURLResultBase
+			| ValidateURLResultWithWarnings
+	): void => {
 		isValid.innerText = String(result.valid);
 
 		result.errors.forEach((error) => {
@@ -65,17 +81,16 @@ document.addEventListener('DOMContentLoaded', () => {
 	// Handle makeCall clicks
 	makeCall.addEventListener('click', () => {
 		const warningLevel = Number(warningLevelSelect.value);
+		const method = methodSelect.value as keyof typeof cssValidator;
 
 		if (warningLevel > 0) {
-			cssValidator
-				.validateText(customCSS.value, { warningLevel: warningLevel as 1 | 2 | 3 })
+			cssValidator[method](customCSS.value, { warningLevel: warningLevel as 1 | 2 | 3 })
 				.then(handleResult)
 				.catch(() => {
 					throw new Error('Promise rejected');
 				});
 		} else {
-			cssValidator
-				.validateText(customCSS.value)
+			cssValidator[method](customCSS.value)
 				.then(handleResult)
 				.catch(() => {
 					throw new Error('Promise rejected');

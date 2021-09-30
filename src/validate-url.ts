@@ -3,37 +3,37 @@ import buildRequestURL from './build-request-url';
 import retrieveValidation from './retrieve-validation';
 import { OptionsWithoutWarnings, OptionsWithWarnings, Options } from './types/options';
 import {
-	ValidateTextResultWithoutWarnings,
-	ValidateTextResultWithWarnings,
-	ValidateTextResult,
-	ValidateTextResultBase,
+	ValidateURLResultWithoutWarnings,
+	ValidateURLResultWithWarnings,
+	ValidateURLResult,
+	ValidateURLResultBase,
 } from './types/result';
 import validateOptions from './validate-options';
 
 // Validates a string of CSS
-async function validateText(
-	textToValidate: string,
+async function validateURL(
+	urlToBeValidated: string,
 	options?: OptionsWithoutWarnings
-): Promise<ValidateTextResultWithoutWarnings>;
-async function validateText(
-	textToValidate: string,
+): Promise<ValidateURLResultWithoutWarnings>;
+async function validateURL(
+	urlToBeValidated: string,
 	options: OptionsWithWarnings
-): Promise<ValidateTextResultWithWarnings>;
-async function validateText(textToBeValidated: string, options?: Options): Promise<ValidateTextResult> {
+): Promise<ValidateURLResultWithWarnings>;
+async function validateURL(urlToBeValidated: string, options?: Options): Promise<ValidateURLResult> {
 	// Validations
-	if (!textToBeValidated) {
-		throw new Error('You must pass in text to be validated');
+	if (!urlToBeValidated) {
+		throw new Error('You must pass in a URL to be validated');
 	}
 
-	if (typeof textToBeValidated !== 'string') {
-		throw new Error('The text to be validated must be a string');
+	if (typeof urlToBeValidated !== 'string') {
+		throw new Error('The URL to be validated must be a string');
 	}
 
 	validateOptions(options);
 
 	// Build URL for fetching
 	const url = buildRequestURL({
-		text: textToBeValidated,
+		url: urlToBeValidated,
 		medium: options?.medium,
 		warningLevel: options?.warningLevel,
 	});
@@ -42,11 +42,11 @@ async function validateText(textToBeValidated: string, options?: Options): Promi
 	const cssValidationResponse = await retrieveValidation(url, options?.timeout ?? 10000);
 
 	// Build result
-	const base: ValidateTextResultBase = {
+	const base: ValidateURLResultBase = {
 		valid: false,
 		errors: [],
 	};
-	const result: ValidateTextResultWithWarnings | ValidateTextResultBase = options?.warningLevel
+	const result: ValidateURLResultWithWarnings | ValidateURLResultBase = options?.warningLevel
 		? {
 				...base,
 				warnings: [],
@@ -59,6 +59,7 @@ async function validateText(textToBeValidated: string, options?: Options): Promi
 		result.errors.push({
 			line: error.line,
 			message: error.message.replace(/[ :]+$/, '').trim(),
+			url: error.source ?? null,
 		});
 	});
 
@@ -68,6 +69,7 @@ async function validateText(textToBeValidated: string, options?: Options): Promi
 				line: warning.line,
 				message: warning.message.replace(/[ :]+$/, '').trim(),
 				level: (warning.level + 1) as 1 | 2 | 3,
+				url: warning.source ?? null,
 			});
 		});
 	}
@@ -76,4 +78,4 @@ async function validateText(textToBeValidated: string, options?: Options): Promi
 	return result;
 }
 
-export default validateText;
+export default validateURL;
