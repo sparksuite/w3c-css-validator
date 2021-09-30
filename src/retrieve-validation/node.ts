@@ -17,8 +17,8 @@ const retrieveInNode = async (url: string, timeout: number): Promise<W3CCSSValid
 				res.on('data', (chunk) => {
 					try {
 						data += chunk;
-					} catch (e) {
-						reject(e);
+					} catch (error) {
+						reject(error);
 					}
 				});
 
