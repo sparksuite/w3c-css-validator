@@ -15,11 +15,19 @@ const retrieveInNode = async (url: string, timeout: number): Promise<W3CCSSValid
 				let data = '';
 
 				res.on('data', (chunk) => {
-					data += chunk;
+					try {
+						data += chunk;
+					} catch (e) {
+						reject(e);
+					}
 				});
 
 				res.on('end', () => {
-					resolve((JSON.parse(data) as W3CCSSValidatorResponse).cssvalidation);
+					try {
+						resolve((JSON.parse(data) as W3CCSSValidatorResponse).cssvalidation);
+					} catch (e) {
+						reject(e);
+					}
 				});
 			}
 		);
