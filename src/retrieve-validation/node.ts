@@ -25,8 +25,8 @@ const retrieveInNode = async (url: string, timeout: number): Promise<W3CCSSValid
 				res.on('end', () => {
 					try {
 						resolve((JSON.parse(data) as W3CCSSValidatorResponse).cssvalidation);
-					} catch (e) {
-						reject(e);
+					} catch (error) {
+						reject(error);
 					}
 				});
 			}
