@@ -5,6 +5,7 @@ const config: Config.InitialOptions = {
 	verbose: true,
 	preset: 'ts-jest',
 	testMatch: ['<rootDir>/*.test.ts'],
+	testTimeout: 11000,
 };
 
 export default config;

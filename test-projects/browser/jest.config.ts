@@ -8,6 +8,7 @@ const config: Config.InitialOptions = merge.recursive(presetTSJest, presetJestPu
 	displayName: 'Browser environment',
 	testMatch: ['<rootDir>/*.test.ts'],
 	verbose: true,
+	testTimeout: 11000,
 });
 
 export default config;
