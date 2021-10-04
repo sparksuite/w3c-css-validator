@@ -11,6 +11,7 @@ const config: Config.InitialOptions = {
 	resolver: 'jest-ts-webcompat-resolver',
 	testMatch: ['<rootDir>/src/**/*.test.ts'],
 	testEnvironment: 'node',
+	testTimeout: 15000,
 };
 
 export default config;
