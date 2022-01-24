@@ -5,6 +5,7 @@
 //Imports
 import retrieveFromBrowser from './browser';
 import 'whatwg-fetch';
+import BadStatusError from './bad-status-error';
 
 // Tests
 describe('#retrieveFromBrowser()', () => {
@@ -39,6 +40,36 @@ describe('#retrieveFromBrowser()', () => {
 				1
 			)
 		).rejects.toThrow('The request took longer than 1ms');
+	});
+
+	it('Rejects status codes other than 200-300', async () => {
+		try {
+			await retrieveFromBrowser(
+				`https://jigsaw.w3.org/css-validator/validator?usermedium=all&warning=no&output=application/json&profile=css3`,
+				3000
+			);
+
+			throw new Error('This test should not proceed to this point');
+		} catch (error: unknown) {
+			expect(error).toBeInstanceOf(BadStatusError);
+
+			if (!(error instanceof BadStatusError)) {
+				return;
+			}
+
+			expect(error.statusCode).toBe(500);
+		}
+	});
+
+	it('Rejects long CSS requests with a hint', async () => {
+		await expect(
+			retrieveFromBrowser(
+				`https://jigsaw.w3.org/css-validator/validator?text=${encodeURIComponent(
+					'* { color: black }\n'.repeat(750)
+				)}&usermedium=all&warning=no&output=application/json&profile=css3`,
+				3000
+			)
+		).rejects.toThrow('This may be due to trying to validate too much CSS at once');
 	});
 
 	it('Rejects unexpected errors', async () => {
