@@ -13,7 +13,7 @@ const retrieveInNode = async (url: string, timeout: number): Promise<W3CCSSValid
 				timeout,
 			},
 			(res) => {
-				if (typeof res.statusCode === 'number' && (res.statusCode < 200 || res.statusCode > 300)) {
+				if (typeof res.statusCode === 'number' && (res.statusCode < 200 || res.statusCode >= 300)) {
 					let message = res.statusMessage;
 
 					if (res.statusCode === 400) {
