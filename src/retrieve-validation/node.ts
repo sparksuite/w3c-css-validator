@@ -1,6 +1,7 @@
 // Imports
 import * as https from 'https';
 import { W3CCSSValidatorResponse } from '.';
+import BadStatusError from './bad-status-error';
 
 // Utility function for retrieving response from W3C CSS Validator in a Node.js environment
 const retrieveInNode = async (url: string, timeout: number): Promise<W3CCSSValidatorResponse['cssvalidation']> => {
@@ -12,6 +13,18 @@ const retrieveInNode = async (url: string, timeout: number): Promise<W3CCSSValid
 				timeout,
 			},
 			(res) => {
+				if (typeof res.statusCode === 'number' && (res.statusCode < 200 || res.statusCode >= 300)) {
+					let message = res.statusMessage;
+
+					if (res.statusCode === 400) {
+						message = message
+							? `${message} (This may be due to trying to validate too much CSS at once)`
+							: 'This may be due to trying to validate too much CSS at once';
+					}
+
+					reject(new BadStatusError(message ?? '', res.statusCode));
+				}
+
 				let data = '';
 
 				res.on('data', (chunk) => {

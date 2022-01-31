@@ -1,5 +1,6 @@
 // Imports
 import { W3CCSSValidatorResponse } from '.';
+import BadStatusError from './bad-status-error';
 
 // Utility function for retrieving response from W3C CSS Validator in a browser environment
 const retrieveInBrowser = async (url: string, timeout: number): Promise<W3CCSSValidatorResponse['cssvalidation']> => {
@@ -16,9 +17,17 @@ const retrieveInBrowser = async (url: string, timeout: number): Promise<W3CCSSVa
 
 	try {
 		res = await fetch(url, { signal: controller.signal });
+
+		if (!res.ok) {
+			throw new BadStatusError(res.statusText, res.status);
+		}
 	} catch (err: unknown) {
 		if (err instanceof Error && err.name === 'AbortError') {
 			throw new Error(`The request took longer than ${timeout}ms`);
+		}
+
+		if (err instanceof TypeError) {
+			throw new TypeError(`${err.message} (This may be due to trying to validate too much CSS at once)`);
 		}
 
 		throw err;
