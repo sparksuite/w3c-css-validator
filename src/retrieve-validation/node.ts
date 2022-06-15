@@ -7,7 +7,7 @@ import { W3CValidatorParameters } from '../types/parameters';
 
 // Utility function for retrieving response from W3C CSS Validator in a Node.js environment
 const retrieveInNode: typeof retrieveValidation = async (
-	method: string,
+	method: 'GET' | 'POST',
 	parameters: W3CValidatorParameters | string,
 	timeout: number
 ): Promise<W3CCSSValidatorResponse['cssvalidation']> => {
