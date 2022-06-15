@@ -1,9 +1,29 @@
 // Imports
 import { W3CCSSValidatorResponse } from '.';
 import BadStatusError from './bad-status-error';
+import retrieveValidation from '.';
+import { W3CValidatorParameters } from '../types/parameters';
 
 // Utility function for retrieving response from W3C CSS Validator in a browser environment
-const retrieveInBrowser = async (url: string, timeout: number): Promise<W3CCSSValidatorResponse['cssvalidation']> => {
+const retrieveInBrowser: typeof retrieveValidation = async (
+	method: string,
+	parameters: W3CValidatorParameters | string,
+	timeout: number
+): Promise<W3CCSSValidatorResponse['cssvalidation']> => {
+	// Build form data
+	let formData: undefined | FormData = undefined;
+
+	if (method === 'POST') {
+		formData = new FormData();
+
+		for (const [key, value] of Object.entries(parameters)) {
+			formData.append(key, value);
+		}
+
+		formData.append('output', 'application/json');
+		formData.append('profile', 'css3');
+	}
+
 	// Initialize controller who's signal will abort the fetch
 	const controller = new AbortController();
 
@@ -16,7 +36,12 @@ const retrieveInBrowser = async (url: string, timeout: number): Promise<W3CCSSVa
 	let res: Response | null = null;
 
 	try {
-		res = await fetch(url, { signal: controller.signal });
+		res = await fetch(
+			`https://jigsaw.w3.org/css-validator/validator${
+				method === 'GET' && typeof parameters === 'string' ? `?${parameters}` : ''
+			}`,
+			{ method, body: formData, signal: controller.signal }
+		);
 
 		if (!res.ok) {
 			throw new BadStatusError(res.statusText, res.status);

@@ -1,5 +1,4 @@
 // Imports
-import buildRequestURL from './build-request-url';
 import retrieveValidation from './retrieve-validation';
 import { OptionsWithoutWarnings, OptionsWithWarnings, Options } from './types/options';
 import {
@@ -31,15 +30,16 @@ async function validateText(textToBeValidated: string, options?: Options): Promi
 
 	validateOptions(options);
 
-	// Build URL for fetching
-	const url = buildRequestURL({
-		text: textToBeValidated,
-		medium: options?.medium,
-		warningLevel: options?.warningLevel,
-	});
-
 	// Call W3C CSS Validator API and store response
-	const cssValidationResponse = await retrieveValidation(url, options?.timeout ?? 10000);
+	const cssValidationResponse = await retrieveValidation(
+		'POST',
+		{
+			text: textToBeValidated,
+			usermedium: options?.medium ?? 'all',
+			warning: options?.warningLevel ? ((options.warningLevel - 1) as 0 | 1 | 2) : 'no',
+		},
+		options?.timeout ?? 10000
+	);
 
 	// Build result
 	const base: ValidateTextResultBase = {

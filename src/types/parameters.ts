@@ -1,8 +1,8 @@
 import { Options } from './options';
 
 interface ParametersBase {
-	medium: Options['medium'];
-	warningLevel: Options['warningLevel'];
+	usermedium: Options['medium'];
+	warning: Options['warningLevel'] | 'no';
 }
 
 interface TextParameters extends ParametersBase {
@@ -11,8 +11,8 @@ interface TextParameters extends ParametersBase {
 }
 
 interface URLParameters extends ParametersBase {
-	url: string;
+	uri: string;
 	text?: never;
 }
 
-export type Parameters = TextParameters | URLParameters;
+export type W3CValidatorParameters = TextParameters | URLParameters;

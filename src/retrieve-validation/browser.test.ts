@@ -16,7 +16,8 @@ describe('#retrieveFromBrowser()', () => {
 	it('Retrieves the results from the W3C Validator API', async () => {
 		expect(
 			await retrieveFromBrowser(
-				'https://jigsaw.w3.org/css-validator/validator?text=.foo%20%7B%20text-align%3A%20center%3B%20%7D&usermedium=all&warning=no&output=application/json&profile=css3',
+				'POST',
+				{ text: '.foo { text-align: center; }', usermedium: 'all', warning: 'no' },
 				3000
 			)
 		).toStrictEqual({
@@ -35,19 +36,14 @@ describe('#retrieveFromBrowser()', () => {
 
 	it('Rejects when the request takes longer than the timeout', async () => {
 		await expect(
-			retrieveFromBrowser(
-				'https://jigsaw.w3.org/css-validator/validator?text=.foo%20%7B%20text-align%3A%20center%3B%20%7D&usermedium=all&warning=no&output=application/json&profile=css3',
-				1
-			)
+			retrieveFromBrowser('POST', { text: '.foo { text-align: center; }', usermedium: 'all', warning: 'no' }, 1)
 		).rejects.toThrow('The request took longer than 1ms');
 	});
 
 	it('Rejects status codes other than 200-300', async () => {
 		try {
-			await retrieveFromBrowser(
-				`https://jigsaw.w3.org/css-validator/validator?usermedium=all&warning=no&output=application/json&profile=css3`,
-				3000
-			);
+			// @ts-expect-error We are purposely giving bad parameters here for testing purposes
+			await retrieveFromBrowser('POST', { usermedium: 'all', warning: 'no' }, 3000);
 
 			throw new Error('This test should not proceed to this point');
 		} catch (error: unknown) {
@@ -59,25 +55,5 @@ describe('#retrieveFromBrowser()', () => {
 
 			expect(error.statusCode).toBe(500);
 		}
-	});
-
-	it('Rejects long CSS requests with a hint', async () => {
-		await expect(
-			retrieveFromBrowser(
-				`https://jigsaw.w3.org/css-validator/validator?text=${encodeURIComponent(
-					'* { color: black }\n'.repeat(750)
-				)}&usermedium=all&warning=no&output=application/json&profile=css3`,
-				3000
-			)
-		).rejects.toThrow('This may be due to trying to validate too much CSS at once');
-	});
-
-	it('Rejects unexpected errors', async () => {
-		await expect(
-			retrieveFromBrowser(
-				'https://jigsaw.w3.org/css-validator/validator?text=.foo%20%7B%20text-align%3A%20center%3B%20%7D&usermedium=all&warning=no&output=application/xml&profile=css3',
-				3000
-			)
-		).rejects.toThrow();
 	});
 });
