@@ -30,9 +30,11 @@ const retrieveValidation = async (
 	timeout: number
 ): Promise<W3CCSSValidatorResponse['cssvalidation']> => {
 	// Validate options
-	const { text: _text, url: _url, ...options } = unprocessedParameters;
-
-	validateOptions(options);
+	validateOptions({
+		timeout,
+		medium: unprocessedParameters.medium,
+		warningLevel: unprocessedParameters.warningLevel,
+	});
 
 	// Build request URL
 	const url = buildRequestURL(unprocessedParameters);
