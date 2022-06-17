@@ -11,6 +11,7 @@ describe('#retrieveFromNode()', () => {
 	it('Retrieves the results from the W3C Validator API', async () => {
 		expect(
 			await retrieveFromNode(
+				'GET',
 				'https://jigsaw.w3.org/css-validator/validator?text=.foo%20%7B%20text-align%3A%20center%3B%20%7D&usermedium=all&warning=no&output=application/json&profile=css3',
 				3000
 			)
@@ -31,6 +32,7 @@ describe('#retrieveFromNode()', () => {
 	it('Rejects when the request takes longer than the timeout', async () => {
 		await expect(
 			retrieveFromNode(
+				'GET',
 				'https://jigsaw.w3.org/css-validator/validator?text=.foo%20%7B%20text-align%3A%20center%3B%20%7D&usermedium=all&warning=no&output=application/json&profile=css3',
 				1
 			)
@@ -40,6 +42,7 @@ describe('#retrieveFromNode()', () => {
 	it('Rejects status codes other than 200-300', async () => {
 		try {
 			await retrieveFromNode(
+				'GET',
 				`https://jigsaw.w3.org/css-validator/validator?text=${encodeURIComponent(
 					'* { color: black }\n'.repeat(750)
 				)}&usermedium=all&warning=no&output=application/json&profile=css3`,
@@ -62,6 +65,7 @@ describe('#retrieveFromNode()', () => {
 	it('Rejects unexpected errors', async () => {
 		await expect(
 			retrieveFromNode(
+				'GET',
 				'https://jigsaw.w3.org/css-validator/validator?text=.foo%20%7B%20text-align%3A%20center%3B%20%7D&usermedium=all&warning=no&output=application/xml&profile=css3',
 				3000
 			)
