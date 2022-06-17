@@ -1,5 +1,4 @@
 // Imports
-import buildRequestURL from './build-request-url';
 import retrieveValidation from './retrieve-validation';
 import { OptionsWithoutWarnings, OptionsWithWarnings, Options } from './types/options';
 import {
@@ -8,7 +7,6 @@ import {
 	ValidateTextResult,
 	ValidateTextResultBase,
 } from './types/result';
-import validateOptions from './validate-options';
 
 // Validates a string of CSS
 async function validateText(
@@ -29,17 +27,16 @@ async function validateText(textToBeValidated: string, options?: Options): Promi
 		throw new Error('The text to be validated must be a string');
 	}
 
-	validateOptions(options);
-
-	// Build URL for fetching
-	const url = buildRequestURL({
-		text: textToBeValidated,
-		medium: options?.medium,
-		warningLevel: options?.warningLevel,
-	});
-
 	// Call W3C CSS Validator API and store response
-	const cssValidationResponse = await retrieveValidation('GET', url, options?.timeout ?? 10000);
+	const cssValidationResponse = await retrieveValidation(
+		'GET',
+		{
+			text: textToBeValidated,
+			medium: options?.medium,
+			warningLevel: options?.warningLevel,
+		},
+		options?.timeout ?? 10000
+	);
 
 	// Build result
 	const base: ValidateTextResultBase = {
