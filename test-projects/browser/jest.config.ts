@@ -1,12 +1,12 @@
 import type { Config } from '@jest/types';
 // @ts-expect-error: Missing types
 import presetTSJest from 'ts-jest/jest-preset';
-import presetJestPuppeteer from 'jest-puppeteer/jest-preset.json';
 import merge from 'merge';
 
-const config: Config.InitialOptions = merge.recursive(presetTSJest, presetJestPuppeteer, {
+const config: Config.InitialOptions = merge.recursive(presetTSJest, {
 	displayName: 'Browser environment',
 	testMatch: ['<rootDir>/*.test.ts'],
+	preset: 'jest-puppeteer',
 	verbose: true,
 	testTimeout: 15000,
 });

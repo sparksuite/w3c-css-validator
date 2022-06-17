@@ -57,7 +57,7 @@ describe('#retrieveFromNode()', () => {
 				return;
 			}
 
-			expect(error.message).toBe('Bad request (This may be due to trying to validate too much CSS at once)');
+			expect(error.message).toBe('Bad Request (This may be due to trying to validate too much CSS at once)');
 			expect(error.statusCode).toBe(400);
 		}
 	});
