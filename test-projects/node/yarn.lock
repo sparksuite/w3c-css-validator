@@ -3571,7 +3571,7 @@ verror@1.10.0:
     extsprintf "^1.2.0"
 
 "w3c-css-validator@link:../..":
-  version "1.1.0"
+  version "1.2.1"
 
 w3c-hr-time@^1.0.2:
   version "1.0.2"
