@@ -39,7 +39,7 @@ async function validateURL(urlToBeValidated: string, options?: Options): Promise
 	});
 
 	// Call W3C CSS Validator API and store response
-	const cssValidationResponse = await retrieveValidation(url, options?.timeout ?? 10000);
+	const cssValidationResponse = await retrieveValidation('GET', url, options?.timeout ?? 10000);
 
 	// Build result
 	const base: ValidateURLResultBase = {
