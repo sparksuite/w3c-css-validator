@@ -42,7 +42,7 @@ const retrieveValidation = async (
 		return await retrieveInBrowser(method, url, timeout);
 	}
 
-	// Retrieve response in node environments
+	// Retrieve response in Node.js environments
 	return await retrieveInNode(method, url, timeout);
 };
 
