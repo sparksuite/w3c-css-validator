@@ -4,12 +4,17 @@ import { W3CCSSValidatorResponse } from '.';
 import BadStatusError from './bad-status-error';
 
 // Utility function for retrieving response from W3C CSS Validator in a Node.js environment
-const retrieveInNode = async (url: string, timeout: number): Promise<W3CCSSValidatorResponse['cssvalidation']> => {
+const retrieveInNode = async (
+	method: 'GET',
+	url: string,
+	timeout: number
+): Promise<W3CCSSValidatorResponse['cssvalidation']> => {
 	return new Promise((resolve, reject) => {
 		// Attempt to fetch CSS validation
-		const req = https.get(
+		const req = https.request(
 			url,
 			{
+				method,
 				timeout,
 			},
 			(res) => {
@@ -49,6 +54,9 @@ const retrieveInNode = async (url: string, timeout: number): Promise<W3CCSSValid
 		req.on('timeout', () => {
 			reject(new Error(`The request took longer than ${timeout}ms`));
 		});
+
+		// End request
+		req.end();
 	});
 };
 

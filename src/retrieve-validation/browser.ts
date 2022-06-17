@@ -3,7 +3,11 @@ import { W3CCSSValidatorResponse } from '.';
 import BadStatusError from './bad-status-error';
 
 // Utility function for retrieving response from W3C CSS Validator in a browser environment
-const retrieveInBrowser = async (url: string, timeout: number): Promise<W3CCSSValidatorResponse['cssvalidation']> => {
+const retrieveInBrowser = async (
+	method: 'GET',
+	url: string,
+	timeout: number
+): Promise<W3CCSSValidatorResponse['cssvalidation']> => {
 	// Initialize controller who's signal will abort the fetch
 	const controller = new AbortController();
 
@@ -16,7 +20,7 @@ const retrieveInBrowser = async (url: string, timeout: number): Promise<W3CCSSVa
 	let res: Response | null = null;
 
 	try {
-		res = await fetch(url, { signal: controller.signal });
+		res = await fetch(url, { method, signal: controller.signal });
 
 		if (!res.ok) {
 			throw new BadStatusError(res.statusText, res.status);
