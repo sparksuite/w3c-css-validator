@@ -11,8 +11,7 @@ const processParameters = (method: Parameters<typeof retrieveValidation>[0], par
 	}
 
 	// Throw if an unrecognized parameter is provided
-	// eslint-disable-next-line @typescript-eslint/restrict-template-expressions -- This should be unreachable
-	throw new Error(`Parameter processing called with unrecognized method: ${method}`);
+	throw new Error(`Parameter processing called with unrecognized method: ${method ?? 'UNKNOWN'}`);
 };
 
 export default processParameters;
