@@ -1,5 +1,4 @@
 // Imports
-import buildRequestURLParams from './build-request-url-params';
 import retrieveValidation from './retrieve-validation';
 import { OptionsWithoutWarnings, OptionsWithWarnings, Options } from './types/options';
 import {
@@ -8,7 +7,6 @@ import {
 	ValidateURLResult,
 	ValidateURLResultBase,
 } from './types/result';
-import validateOptions from './validate-options';
 
 // Validates a string of CSS
 async function validateURL(
@@ -29,17 +27,16 @@ async function validateURL(urlToBeValidated: string, options?: Options): Promise
 		throw new Error('The URL to be validated must be a string');
 	}
 
-	validateOptions(options);
-
-	// Build params for fetching
-	const params = buildRequestURLParams({
-		url: urlToBeValidated,
-		medium: options?.medium,
-		warningLevel: options?.warningLevel,
-	});
-
 	// Call W3C CSS Validator API and store response
-	const cssValidationResponse = await retrieveValidation('GET', params, options?.timeout ?? 10000);
+	const cssValidationResponse = await retrieveValidation(
+		'GET',
+		{
+			url: urlToBeValidated,
+			medium: options?.medium,
+			warningLevel: options?.warningLevel,
+		},
+		options?.timeout ?? 10000
+	);
 
 	// Build result
 	const base: ValidateURLResultBase = {

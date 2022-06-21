@@ -7,7 +7,6 @@ import {
 	ValidateTextResult,
 	ValidateTextResultBase,
 } from './types/result';
-import validateOptions from './validate-options';
 
 // Validates a string of CSS
 async function validateText(
@@ -28,15 +27,13 @@ async function validateText(textToBeValidated: string, options?: Options): Promi
 		throw new Error('The text to be validated must be a string');
 	}
 
-	validateOptions(options);
-
 	// Call W3C CSS Validator API and store response
 	const cssValidationResponse = await retrieveValidation(
-		'POST',
+		'GET',
 		{
 			text: textToBeValidated,
-			usermedium: options?.medium ?? 'all',
-			warning: options?.warningLevel ? ((options.warningLevel - 1) as 0 | 1 | 2) : 'no',
+			medium: options?.medium,
+			warningLevel: options?.warningLevel,
 		},
 		options?.timeout ?? 10000
 	);

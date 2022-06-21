@@ -1,7 +1,9 @@
 // Imports
-import { W3CValidatorParameters } from '../types/parameters';
+import { Parameters } from '../types/parameters';
+import validateOptions from '../validate-options';
 import retrieveInBrowser from './browser';
 import retrieveInNode from './node';
+import processParameters from './process-parameters';
 
 // Define types
 export interface W3CCSSValidatorResponse {
@@ -40,26 +42,28 @@ const validateRetrievalCall = async (
 };
 
 // Function that detects the appropriate HTTP request client and returns a response accordingly
-async function retrieveValidation(
+const retrieveValidation = async (
 	method: 'GET',
-	parameters: string,
+	unprocessedParameters: Parameters,
 	timeout: number
-): Promise<W3CCSSValidatorResponse['cssvalidation']>;
-async function retrieveValidation(
-	method: 'POST',
-	parameters: W3CValidatorParameters,
-	timeout: number
-): Promise<W3CCSSValidatorResponse['cssvalidation']>;
-async function retrieveValidation(
-	method: 'GET' | 'POST',
-	parameters: W3CValidatorParameters | string,
-	timeout: number
-): Promise<W3CCSSValidatorResponse['cssvalidation']> {
+): Promise<W3CCSSValidatorResponse['cssvalidation']> => {
+	// Validate options
+	validateOptions({
+		timeout,
+		medium: unprocessedParameters.medium,
+		warningLevel: unprocessedParameters.warningLevel,
+	});
+
+	// Process request parameters
+	const parameters = processParameters(method, unprocessedParameters);
+
+	// Retrieve response in browser environments
 	if (typeof window !== 'undefined' && typeof window?.fetch === 'function') {
-		return await validateRetrievalCall(retrieveInBrowser, method, parameters, timeout);
+		return await retrieveInBrowser(method, parameters, timeout);
 	}
 
-	return await validateRetrievalCall(retrieveInNode, method, parameters, timeout);
-}
+	// Retrieve response in Node.js environments
+	return await retrieveInNode(method, parameters, timeout);
+};
 
 export default retrieveValidation;

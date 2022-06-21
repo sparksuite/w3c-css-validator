@@ -7,7 +7,7 @@ interface ParametersBase {
 
 interface TextParameters extends ParametersBase {
 	text: string;
-	uri?: never;
+	url?: never;
 }
 
 interface URLParameters extends ParametersBase {

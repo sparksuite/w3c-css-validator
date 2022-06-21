@@ -10,7 +10,11 @@ describe('#retrieveFromNode()', () => {
 
 	it('Retrieves the results from the W3C Validator API', async () => {
 		expect(
-			await retrieveFromNode('POST', { text: '.foo { text-align: center; }', usermedium: 'all', warning: 'no' }, 3000)
+			await retrieveFromNode(
+				'GET',
+				'?text=.foo%20%7B%20text-align%3A%20center%3B%20%7D&usermedium=all&warning=no&output=application/json&profile=css3',
+				3000
+			)
 		).toStrictEqual({
 			validity: true,
 			checkedby: expect.any(String), // eslint-disable-line @typescript-eslint/no-unsafe-assignment
@@ -27,14 +31,23 @@ describe('#retrieveFromNode()', () => {
 
 	it('Rejects when the request takes longer than the timeout', async () => {
 		await expect(
-			retrieveFromNode('POST', { text: '.foo { text-align: center; }', usermedium: 'all', warning: 'no' }, 1)
+			retrieveFromNode(
+				'GET',
+				'?text=.foo%20%7B%20text-align%3A%20center%3B%20%7D&usermedium=all&warning=no&output=application/json&profile=css3',
+				1
+			)
 		).rejects.toThrow('The request took longer than 1ms');
 	});
 
 	it('Rejects status codes other than 200-300', async () => {
 		try {
-			// @ts-expect-error We are purposely giving bad parameters here for testing purposes
-			await retrieveFromNode('POST', { usermedium: 'all', warning: 'no' }, 3000);
+			await retrieveFromNode(
+				'GET',
+				`?text=${encodeURIComponent(
+					'* { color: black }\n'.repeat(750)
+				)}&usermedium=all&warning=no&output=application/json&profile=css3`,
+				3000
+			);
 
 			throw new Error('This test should not proceed to this point');
 		} catch (error: unknown) {
@@ -44,7 +57,18 @@ describe('#retrieveFromNode()', () => {
 				return;
 			}
 
-			expect(error.statusCode).toBe(500);
+			expect(error.message).toBe('Bad Request (This may be due to trying to validate too much CSS at once)');
+			expect(error.statusCode).toBe(400);
 		}
+	});
+
+	it('Rejects unexpected errors', async () => {
+		await expect(
+			retrieveFromNode(
+				'GET',
+				'?text=.foo%20%7B%20text-align%3A%20center%3B%20%7D&usermedium=all&warning=no&output=application/xml&profile=css3',
+				3000
+			)
+		).rejects.toThrow();
 	});
 });

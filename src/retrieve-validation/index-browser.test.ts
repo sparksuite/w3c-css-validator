@@ -15,7 +15,15 @@ describe('#retrieveValidation()', () => {
 	it('Uses retrieveInBrowser() when the Fetch API is available', async () => {
 		require('whatwg-fetch');
 
-		await retrieveValidation('POST', { text: '.foo { text-align: center; }', usermedium: 'all', warning: 'no' }, 3000);
+		await retrieveValidation(
+			'GET',
+			{
+				text: '.foo { text-align: center; }',
+				medium: undefined,
+				warningLevel: undefined,
+			},
+			3000
+		);
 
 		expect(retrieveInBrowser as jest.Mock).toBeCalled();
 	});
