@@ -1,8 +1,8 @@
 // Imports
-import { Parameters } from './types/parameters';
+import { Parameters } from '../types/parameters';
 
 // Helper function that takes in parameters and builds a URL to make a request with
-function buildRequestURL(parameters: Parameters): string {
+function buildRequestURLParameters(parameters: Parameters): string {
 	// Validate input
 	if ('text' in parameters && 'url' in parameters) {
 		throw new Error('Only a text or a URL value can be provided');
@@ -23,9 +23,9 @@ function buildRequestURL(parameters: Parameters): string {
 		profile: 'css3',
 	};
 
-	return `https://jigsaw.w3.org/css-validator/validator?${Object.entries(params)
+	return `?${Object.entries(params)
 		.map(([key, val]) => `${key}=${val}`)
 		.join('&')}`;
 }
 
-export default buildRequestURL;
+export default buildRequestURLParameters;

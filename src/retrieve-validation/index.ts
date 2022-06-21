@@ -1,9 +1,9 @@
 // Imports
-import buildRequestURL from '../build-request-url';
 import { Parameters } from '../types/parameters';
 import validateOptions from '../validate-options';
 import retrieveInBrowser from './browser';
 import retrieveInNode from './node';
+import processParameters from './process-parameters';
 
 // Define types
 export interface W3CCSSValidatorResponse {
@@ -36,16 +36,16 @@ const retrieveValidation = async (
 		warningLevel: unprocessedParameters.warningLevel,
 	});
 
-	// Build request URL
-	const url = buildRequestURL(unprocessedParameters);
+	// Process request parameters
+	const parameters = processParameters(method, unprocessedParameters);
 
 	// Retrieve response in browser environments
 	if (typeof window !== 'undefined' && typeof window?.fetch === 'function') {
-		return await retrieveInBrowser(method, url, timeout);
+		return await retrieveInBrowser(method, parameters, timeout);
 	}
 
 	// Retrieve response in Node.js environments
-	return await retrieveInNode(method, url, timeout);
+	return await retrieveInNode(method, parameters, timeout);
 };
 
 export default retrieveValidation;

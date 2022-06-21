@@ -6,13 +6,13 @@ import BadStatusError from './bad-status-error';
 // Utility function for retrieving response from W3C CSS Validator in a Node.js environment
 const retrieveInNode = async (
 	method: 'GET',
-	url: string,
+	parameters: string,
 	timeout: number
 ): Promise<W3CCSSValidatorResponse['cssvalidation']> => {
 	return new Promise((resolve, reject) => {
 		// Attempt to fetch CSS validation
 		const req = https.request(
-			url,
+			`https://jigsaw.w3.org/css-validator/validator${method === 'GET' ? parameters : ''}`,
 			{
 				method,
 				timeout,

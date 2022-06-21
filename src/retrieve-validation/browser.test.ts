@@ -17,7 +17,7 @@ describe('#retrieveFromBrowser()', () => {
 		expect(
 			await retrieveFromBrowser(
 				'GET',
-				'https://jigsaw.w3.org/css-validator/validator?text=.foo%20%7B%20text-align%3A%20center%3B%20%7D&usermedium=all&warning=no&output=application/json&profile=css3',
+				'?text=.foo%20%7B%20text-align%3A%20center%3B%20%7D&usermedium=all&warning=no&output=application/json&profile=css3',
 				3000
 			)
 		).toStrictEqual({
@@ -38,7 +38,7 @@ describe('#retrieveFromBrowser()', () => {
 		await expect(
 			retrieveFromBrowser(
 				'GET',
-				'https://jigsaw.w3.org/css-validator/validator?text=.foo%20%7B%20text-align%3A%20center%3B%20%7D&usermedium=all&warning=no&output=application/json&profile=css3',
+				'?text=.foo%20%7B%20text-align%3A%20center%3B%20%7D&usermedium=all&warning=no&output=application/json&profile=css3',
 				1
 			)
 		).rejects.toThrow('The request took longer than 1ms');
@@ -46,11 +46,7 @@ describe('#retrieveFromBrowser()', () => {
 
 	it('Rejects status codes other than 200-300', async () => {
 		try {
-			await retrieveFromBrowser(
-				'GET',
-				`https://jigsaw.w3.org/css-validator/validator?usermedium=all&warning=no&output=application/json&profile=css3`,
-				3000
-			);
+			await retrieveFromBrowser('GET', `?usermedium=all&warning=no&output=application/json&profile=css3`, 3000);
 
 			throw new Error('This test should not proceed to this point');
 		} catch (error: unknown) {
@@ -68,7 +64,7 @@ describe('#retrieveFromBrowser()', () => {
 		await expect(
 			retrieveFromBrowser(
 				'GET',
-				`https://jigsaw.w3.org/css-validator/validator?text=${encodeURIComponent(
+				`?text=${encodeURIComponent(
 					'* { color: black }\n'.repeat(750)
 				)}&usermedium=all&warning=no&output=application/json&profile=css3`,
 				3000
@@ -80,7 +76,7 @@ describe('#retrieveFromBrowser()', () => {
 		await expect(
 			retrieveFromBrowser(
 				'GET',
-				'https://jigsaw.w3.org/css-validator/validator?text=.foo%20%7B%20text-align%3A%20center%3B%20%7D&usermedium=all&warning=no&output=application/xml&profile=css3',
+				'?text=.foo%20%7B%20text-align%3A%20center%3B%20%7D&usermedium=all&warning=no&output=application/xml&profile=css3',
 				3000
 			)
 		).rejects.toThrow();
