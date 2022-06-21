@@ -1,13 +1,11 @@
 // Imports
 import * as https from 'https';
-import retrieveValidation, { W3CCSSValidatorResponse } from '.';
+import { W3CCSSValidatorResponse } from '.';
 import BadStatusError from './bad-status-error';
-import FormData from 'form-data';
-import { W3CValidatorParameters } from '../types/parameters';
 
 // Utility function for retrieving response from W3C CSS Validator in a Node.js environment
 const retrieveInNode = async (
-	method: 'GET',
+	method: 'GET' | 'POST',
 	parameters: string,
 	timeout: number
 ): Promise<W3CCSSValidatorResponse['cssvalidation']> => {
@@ -18,6 +16,12 @@ const retrieveInNode = async (
 			{
 				method,
 				timeout,
+				...(method === 'POST' ? {
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: parameters,
+				} : {}),
 			},
 			(res) => {
 				if (typeof res.statusCode === 'number' && (res.statusCode < 200 || res.statusCode >= 300)) {
@@ -43,8 +47,6 @@ const retrieveInNode = async (
 				});
 			}
 		);
-
-		formData?.pipe(req);
 
 		// Listen for timeout event and reject in callback
 		req.on('timeout', () => {

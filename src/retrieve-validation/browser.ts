@@ -1,12 +1,10 @@
 // Imports
 import { W3CCSSValidatorResponse } from '.';
 import BadStatusError from './bad-status-error';
-import retrieveValidation from '.';
-import { W3CValidatorParameters } from '../types/parameters';
 
 // Utility function for retrieving response from W3C CSS Validator in a browser environment
 const retrieveInBrowser = async (
-	method: 'GET',
+	method: 'GET' | 'POST',
 	parameters: string,
 	timeout: number
 ): Promise<W3CCSSValidatorResponse['cssvalidation']> => {
@@ -25,6 +23,12 @@ const retrieveInBrowser = async (
 		res = await fetch(`https://jigsaw.w3.org/css-validator/validator${method === 'GET' ? parameters : ''}`, {
 			method,
 			signal: controller.signal,
+			...(method === 'POST' ? {
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: parameters,
+			} : {}),
 		});
 
 		if (!res.ok) {

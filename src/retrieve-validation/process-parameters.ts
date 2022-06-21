@@ -10,6 +10,12 @@ const processParameters = (method: Parameters<typeof retrieveValidation>[0], par
 		return buildRequestURLParameters(parameters);
 	}
 
+
+	// Handle parameters for POST method
+	if (method === 'POST') {
+		return JSON.stringify(parameters);
+	}
+
 	// Throw if an unrecognized parameter is provided
 	// eslint-disable-next-line @typescript-eslint/restrict-template-expressions -- This should be unreachable
 	throw new Error(`Parameter processing called with unrecognized method: ${method}`);
