@@ -1,11 +1,12 @@
 // Imports
 import { Parameters } from '../types/parameters';
+import getBoundary from './get-boundary';
 
 // Function that builds multipart/form-data for the specific parameters we pass to the W3C Validator API
 // Based on this standard -> https://datatracker.ietf.org/doc/html/rfc7578
 const buildFormData = (parameters: Extract<Parameters, { text: string }>): string => {
 	const CRLF = '\r\n';
-	const boundary = `--CSSValidatorBoundary`;
+	const boundary = `--${getBoundary()}`;
 
 	const pieces: string[] = [
 		`Content-Disposition: form-data; name="text"${CRLF}${CRLF}${parameters.text}${CRLF}`,
