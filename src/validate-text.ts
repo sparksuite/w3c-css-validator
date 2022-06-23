@@ -29,7 +29,7 @@ async function validateText(textToBeValidated: string, options?: Options): Promi
 
 	// Call W3C CSS Validator API and store response
 	const cssValidationResponse = await retrieveValidation(
-		'GET',
+		'POST',
 		{
 			text: textToBeValidated,
 			medium: options?.medium,

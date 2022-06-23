@@ -25,7 +25,8 @@ const retrieveInBrowser = async (
 			signal: controller.signal,
 			...(method === 'POST' ? {
 				headers: {
-					'Content-Type': 'application/json',
+					'Content-Type': 'multipart/form-data; boundary=CSSValidatorBoundary',
+					'Content-Length': String(parameters.length),
 				},
 				body: parameters,
 			} : {}),
@@ -37,10 +38,6 @@ const retrieveInBrowser = async (
 	} catch (err: unknown) {
 		if (err instanceof Error && err.name === 'AbortError') {
 			throw new Error(`The request took longer than ${timeout}ms`);
-		}
-
-		if (err instanceof TypeError) {
-			throw new TypeError(`${err.message} (This may be due to trying to validate too much CSS at once)`);
 		}
 
 		throw err;

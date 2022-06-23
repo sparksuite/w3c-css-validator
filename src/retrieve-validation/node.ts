@@ -18,9 +18,9 @@ const retrieveInNode = async (
 				timeout,
 				...(method === 'POST' ? {
 					headers: {
-						'Content-Type': 'application/json',
+						'Content-Type': 'multipart/form-data; boundary=CSSValidatorBoundary',
+						'Content-Length': String(parameters.length),
 					},
-					body: parameters,
 				} : {}),
 			},
 			(res) => {
@@ -47,6 +47,8 @@ const retrieveInNode = async (
 				});
 			}
 		);
+
+		req.write(parameters);
 
 		// Listen for timeout event and reject in callback
 		req.on('timeout', () => {

@@ -60,18 +60,6 @@ describe('#retrieveFromBrowser()', () => {
 		}
 	});
 
-	it('Rejects long CSS requests with a hint', async () => {
-		await expect(
-			retrieveFromBrowser(
-				'GET',
-				`?text=${encodeURIComponent(
-					'* { color: black }\n'.repeat(750)
-				)}&usermedium=all&warning=no&output=application/json&profile=css3`,
-				3000
-			)
-		).rejects.toThrow('This may be due to trying to validate too much CSS at once');
-	});
-
 	it('Rejects unexpected errors', async () => {
 		await expect(
 			retrieveFromBrowser(

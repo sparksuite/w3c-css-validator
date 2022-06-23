@@ -43,9 +43,7 @@ describe('#retrieveFromNode()', () => {
 		try {
 			await retrieveFromNode(
 				'GET',
-				`?text=${encodeURIComponent(
-					'* { color: black }\n'.repeat(750)
-				)}&usermedium=all&warning=no&output=application/json&profile=css3`,
+				`?usermedium=all&warning=no&output=application/json&profile=css3`,
 				3000
 			);
 
@@ -57,8 +55,8 @@ describe('#retrieveFromNode()', () => {
 				return;
 			}
 
-			expect(error.message).toBe('Bad Request (This may be due to trying to validate too much CSS at once)');
-			expect(error.statusCode).toBe(400);
+			expect(error.message).toBe('Internal Server Error');
+			expect(error.statusCode).toBe(500);
 		}
 	});
 
