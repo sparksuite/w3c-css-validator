@@ -50,7 +50,9 @@ const retrieveInNode = async (
 			}
 		);
 
-		req.write(parameters);
+		if (method === 'POST') {
+			req.write(parameters);
+		}
 
 		// Listen for timeout event and reject in callback
 		req.on('timeout', () => {
