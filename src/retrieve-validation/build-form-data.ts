@@ -1,5 +1,8 @@
+// Imports
 import { Parameters } from '../types/parameters';
 
+// Function that builds multipart/form-data for the specific parameters we pass to the W3C Validator API
+// Based on this standard -> https://datatracker.ietf.org/doc/html/rfc7578
 const buildFormData = (parameters: Extract<Parameters, { text: string }>): string => {
 	const CRLF = '\r\n';
 	const boundary = `--CSSValidatorBoundary`;
