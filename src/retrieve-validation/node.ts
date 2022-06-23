@@ -16,12 +16,14 @@ const retrieveInNode = async (
 			{
 				method,
 				timeout,
-				...(method === 'POST' ? {
-					headers: {
-						'Content-Type': 'multipart/form-data; boundary=CSSValidatorBoundary',
-						'Content-Length': String(parameters.length),
-					},
-				} : {}),
+				...(method === 'POST'
+					? {
+							headers: {
+								'Content-Type': 'multipart/form-data; boundary=CSSValidatorBoundary',
+								'Content-Length': String(parameters.length),
+							},
+					  }
+					: {}),
 			},
 			(res) => {
 				if (typeof res.statusCode === 'number' && (res.statusCode < 200 || res.statusCode >= 300)) {

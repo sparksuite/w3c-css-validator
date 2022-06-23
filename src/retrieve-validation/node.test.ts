@@ -41,11 +41,7 @@ describe('#retrieveFromNode()', () => {
 
 	it('Rejects status codes other than 200-300', async () => {
 		try {
-			await retrieveFromNode(
-				'GET',
-				`?usermedium=all&warning=no&output=application/json&profile=css3`,
-				3000
-			);
+			await retrieveFromNode('GET', `?usermedium=all&warning=no&output=application/json&profile=css3`, 3000);
 
 			throw new Error('This test should not proceed to this point');
 		} catch (error: unknown) {

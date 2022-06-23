@@ -2,7 +2,7 @@
 import { Parameters } from '../types/parameters';
 
 // Helper function that takes in parameters and builds a URL to make a request with
-function buildRequestURLParameters(parameters: Extract<Parameters, { url: string; }>): string {
+function buildRequestURLParameters(parameters: Extract<Parameters, { url: string }>): string {
 	// Return request URL
 	const params = {
 		uri: encodeURIComponent(parameters.url),

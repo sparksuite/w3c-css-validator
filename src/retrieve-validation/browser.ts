@@ -23,13 +23,15 @@ const retrieveInBrowser = async (
 		res = await fetch(`https://jigsaw.w3.org/css-validator/validator${method === 'GET' ? parameters : ''}`, {
 			method,
 			signal: controller.signal,
-			...(method === 'POST' ? {
-				headers: {
-					'Content-Type': 'multipart/form-data; boundary=CSSValidatorBoundary',
-					'Content-Length': String(parameters.length),
-				},
-				body: parameters,
-			} : {}),
+			...(method === 'POST'
+				? {
+						headers: {
+							'Content-Type': 'multipart/form-data; boundary=CSSValidatorBoundary',
+							'Content-Length': String(parameters.length),
+						},
+						body: parameters,
+				  }
+				: {}),
 		});
 
 		if (!res.ok) {

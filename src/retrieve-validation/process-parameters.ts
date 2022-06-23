@@ -15,7 +15,6 @@ const processParameters = (method: Parameters<typeof retrieveValidation>[0], par
 		return buildRequestURLParameters(parameters);
 	}
 
-
 	// Handle parameters for POST method
 	if (method === 'POST') {
 		if ('url' in parameters) {
