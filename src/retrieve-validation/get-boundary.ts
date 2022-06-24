@@ -1,12 +1,17 @@
-// Helper function that produces a boundary for form data
-let boundary: null | string = null;
+// Expected length of a boundary
+export const boundaryLength = 34;
 
+// Helper function that produces a boundary for form data
 const getBoundary = (): string => {
-	if (!boundary) {
-		boundary = `----CSSValidatorBoundary${String(Math.random()).slice(2)}`;
+	const allowedChars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+
+	let randomBoundaryPiece = '';
+
+	for (let i = 0; i < 10; i += 1) {
+		randomBoundaryPiece += allowedChars[Math.floor(Math.random() * allowedChars.length)];
 	}
 
-	return boundary;
+	return `----CSSValidatorBoundary${randomBoundaryPiece}`;
 };
 
 export default getBoundary;

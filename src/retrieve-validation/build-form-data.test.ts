@@ -2,11 +2,16 @@
 import buildFormData from './build-form-data';
 import getBoundary from './get-boundary';
 
+// Mocks
+jest.mock('./get-boundary');
+
+const boundary = '----CSSValidationBoundary0123456789';
+
+(getBoundary as jest.Mock).mockReturnValue(boundary);
+
 // Tests
 describe('#buildFormData()', () => {
 	it('Handles text with no options', () => {
-		const boundary = getBoundary();
-
 		expect(
 			buildFormData({
 				text: '.foo { color: red; }',
@@ -19,8 +24,6 @@ describe('#buildFormData()', () => {
 	});
 
 	it('Uses provided parameters over default values', () => {
-		const boundary = getBoundary();
-
 		expect(
 			buildFormData({
 				text: '.foo { color: red; }',

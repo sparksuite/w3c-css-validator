@@ -1,11 +1,17 @@
 // Imports
-import getBoundary from './get-boundary';
+import getBoundary, { boundaryLength } from './get-boundary';
 
 // Mocks
 
 // Tests
+describe('#boundaryLength', () => {
+	it('Is the correct length', () => {
+		expect(boundaryLength).toEqual(34);
+	});
+});
+
 describe('#getBoundary()', () => {
-	it('Returns the same value when called multiple times', () => {
-		expect(getBoundary()).toEqual(getBoundary());
+	it('Returns a value of the expected length', () => {
+		expect(getBoundary().length).toEqual(boundaryLength);
 	});
 });

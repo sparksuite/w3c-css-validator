@@ -2,7 +2,7 @@
 import * as https from 'https';
 import { W3CCSSValidatorResponse } from '.';
 import BadStatusError from './bad-status-error';
-import getBoundary from './get-boundary';
+import { boundaryLength } from './get-boundary';
 
 // Utility function for retrieving response from W3C CSS Validator in a Node.js environment
 const retrieveInNode = async (
@@ -20,7 +20,7 @@ const retrieveInNode = async (
 				...(method === 'POST'
 					? {
 							headers: {
-								'Content-Type': `multipart/form-data; boundary=${getBoundary()}`,
+								'Content-Type': `multipart/form-data; boundary=${parameters.slice(2, boundaryLength + 2)}`,
 								'Content-Length': String(parameters.length),
 							},
 					  }

@@ -1,7 +1,13 @@
 // Imports
 import buildFormData from './build-form-data';
 import buildRequestURLParameters from './build-request-url-parameters';
+import getBoundary from './get-boundary';
 import processParameters from './process-parameters';
+
+// Mocks
+jest.mock('./get-boundary');
+
+(getBoundary as jest.Mock).mockReturnValue('----CSSValidationBoundary0123456789');
 
 // Tests
 describe('#processParameters()', () => {
