@@ -1,10 +1,11 @@
 // Imports
 import { W3CCSSValidatorResponse } from '.';
 import BadStatusError from './bad-status-error';
+import { boundaryLength } from './get-boundary';
 
 // Utility function for retrieving response from W3C CSS Validator in a browser environment
 const retrieveInBrowser = async (
-	method: 'GET',
+	method: 'GET' | 'POST',
 	parameters: string,
 	timeout: number
 ): Promise<W3CCSSValidatorResponse['cssvalidation']> => {
@@ -23,6 +24,15 @@ const retrieveInBrowser = async (
 		res = await fetch(`https://jigsaw.w3.org/css-validator/validator${method === 'GET' ? parameters : ''}`, {
 			method,
 			signal: controller.signal,
+			...(method === 'POST'
+				? {
+						headers: {
+							'Content-Type': `multipart/form-data; boundary=${parameters.slice(2, boundaryLength + 2)}`,
+							'Content-Length': String(parameters.length),
+						},
+						body: parameters,
+				  }
+				: {}),
 		});
 
 		if (!res.ok) {
@@ -31,10 +41,6 @@ const retrieveInBrowser = async (
 	} catch (err: unknown) {
 		if (err instanceof Error && err.name === 'AbortError') {
 			throw new Error(`The request took longer than ${timeout}ms`);
-		}
-
-		if (err instanceof TypeError) {
-			throw new TypeError(`${err.message} (This may be due to trying to validate too much CSS at once)`);
 		}
 
 		throw err;

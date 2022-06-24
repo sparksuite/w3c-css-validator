@@ -18,7 +18,7 @@ describe('#retrieveValidation()', () => {
 		await retrieveValidation(
 			'GET',
 			{
-				text: '.foo { text-align: center; }',
+				url: 'https://raw.githubusercontent.com/sparksuite/w3c-css-validator/master/public/css/valid.css',
 				medium: undefined,
 				warningLevel: undefined,
 			},

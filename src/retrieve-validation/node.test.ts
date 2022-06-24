@@ -41,13 +41,7 @@ describe('#retrieveFromNode()', () => {
 
 	it('Rejects status codes other than 200-300', async () => {
 		try {
-			await retrieveFromNode(
-				'GET',
-				`?text=${encodeURIComponent(
-					'* { color: black }\n'.repeat(750)
-				)}&usermedium=all&warning=no&output=application/json&profile=css3`,
-				3000
-			);
+			await retrieveFromNode('GET', `?usermedium=all&warning=no&output=application/json&profile=css3`, 3000);
 
 			throw new Error('This test should not proceed to this point');
 		} catch (error: unknown) {
@@ -57,8 +51,8 @@ describe('#retrieveFromNode()', () => {
 				return;
 			}
 
-			expect(error.message).toBe('Bad Request (This may be due to trying to validate too much CSS at once)');
-			expect(error.statusCode).toBe(400);
+			expect(error.message).toBe('Internal Server Error');
+			expect(error.statusCode).toBe(500);
 		}
 	});
 
