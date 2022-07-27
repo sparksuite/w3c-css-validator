@@ -19,7 +19,7 @@
 		"clsx": "^1.1.1",
 		"react": "^17.0.1",
 		"react-dom": "^17.0.1",
-		"w3c-css-validator": "link:../"
+		"w3c-css-validator": "link:.."
 	},
 	"browserslist": {
 		"production": [
