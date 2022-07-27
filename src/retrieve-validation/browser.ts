@@ -28,7 +28,7 @@ const retrieveInBrowser = async (
 				? {
 						headers: {
 							'Content-Type': `multipart/form-data; boundary=${parameters.slice(2, boundaryLength + 2)}`,
-							'Content-Length': String(parameters.length),
+							'Content-Length': String(new TextEncoder().encode(parameters).byteLength),
 						},
 						body: parameters,
 				  }
