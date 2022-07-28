@@ -7,9 +7,7 @@ type ValidateText = typeof validateText;
 // Export this function so we can use it elsewhere
 export default function testValidateText(validateText: ValidateText): void {
 	describe('#validateText()', () => {
-		afterEach(
-			() => new Promise<void>((resolve) => setTimeout(resolve, 1000))
-		);
+		afterEach(() => new Promise<void>((resolve) => setTimeout(resolve, 1000)));
 
 		it('Returns the validity and errors when no options are provided', async () => {
 			expect(await validateText('.foo { text-align: center; }')).toStrictEqual({
