@@ -15,6 +15,7 @@ module.exports = {
 		extensions: ['.ts', '.js'],
 		fallback: {
 			https: false,
+			util: false,
 		},
 	},
 	output: {
