@@ -89,4 +89,17 @@ module.exports = {
 			},
 		],
 	],
+	plugins: [
+		() => ({
+			configureWebpack() {
+				return {
+					resolve: {
+						fallback: {
+							https: false,
+						},
+					},
+				};
+			},
+		}),
+	],
 };
