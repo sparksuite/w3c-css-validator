@@ -27,7 +27,9 @@ describe('#validateText()', () => {
 	});
 
 	// Wait after each test, see "Note" section under https://jigsaw.w3.org/css-validator/manual.html#expert
-	afterEach(() => new Promise<void>((resolve) => setTimeout(resolve, 1000)));
+	afterEach(
+		() => new Promise<void>((resolve) => setTimeout(resolve, 1000))
+	);
 
 	// Tests
 	it('Loads', async () => {
@@ -89,7 +91,9 @@ describe('#validateURL()', () => {
 	});
 
 	// Wait after each test, see "Note" section under https://jigsaw.w3.org/css-validator/manual.html#expert
-	afterEach(() => new Promise<void>((resolve) => setTimeout(resolve, 1000)));
+	afterEach(
+		() => new Promise<void>((resolve) => setTimeout(resolve, 1000))
+	);
 
 	// Tests
 	it('Loads', async () => {

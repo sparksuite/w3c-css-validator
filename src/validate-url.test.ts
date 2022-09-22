@@ -7,7 +7,9 @@ type ValidateURL = typeof validateURL;
 // Export this function so we can use it elsewhere
 export default function testValidateURL(validateURL: ValidateURL): void {
 	describe('#validateURL()', () => {
-		afterEach(() => new Promise<void>((resolve) => setTimeout(resolve, 1000)));
+		afterEach(
+			() => new Promise<void>((resolve) => setTimeout(resolve, 1000))
+		);
 
 		it('Returns the validity and errors when no options are provided', async () => {
 			expect(
