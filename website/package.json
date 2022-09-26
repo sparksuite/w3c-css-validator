@@ -13,13 +13,13 @@
 		"type-check": "tsc"
 	},
 	"dependencies": {
-		"@docusaurus/core": "2.0.0-alpha.71",
-		"@docusaurus/preset-classic": "2.0.0-alpha.71",
+		"@docusaurus/core": "2.1.0",
+		"@docusaurus/preset-classic": "2.1.0",
 		"@mdx-js/react": "^1.6.21",
 		"clsx": "^1.1.1",
-		"react": "^17.0.1",
-		"react-dom": "^17.0.1",
-		"w3c-css-validator": "link:../"
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"w3c-css-validator": "link:.."
 	},
 	"browserslist": {
 		"production": [
@@ -34,11 +34,11 @@
 		]
 	},
 	"devDependencies": {
-		"@docusaurus/module-type-aliases": "^2.0.0-alpha.70",
-		"@tsconfig/docusaurus": "^1.0.2",
-		"@types/react": "^17.0.2",
+		"@docusaurus/module-type-aliases": "^2.1.0",
+		"@tsconfig/docusaurus": "^1.0.6",
+		"@types/react": "^18.0.20",
 		"@types/react-helmet": "^6.1.0",
-		"@types/react-router-dom": "^5.1.7",
-		"typescript": "^4.2.2"
+		"@types/react-router-dom": "^5.3.3",
+		"typescript": "^4.7.4"
 	}
 }
