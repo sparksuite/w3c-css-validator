@@ -9,9 +9,7 @@ import BadStatusError from './bad-status-error';
 
 // Tests
 describe('#retrieveFromBrowser()', () => {
-	afterEach(
-		() => new Promise<void>((resolve) => setTimeout(resolve, 1000))
-	);
+	afterEach(() => new Promise<void>((resolve) => setTimeout(resolve, 1000)));
 
 	it('Retrieves the results from the W3C Validator API', async () => {
 		expect(
