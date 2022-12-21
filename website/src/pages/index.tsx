@@ -18,7 +18,7 @@ const features = [
 		title: 'Node.js + browser',
 		imageUrl: 'img/undraw_powerful.svg',
 		description: (
-			<>Switches intelligently between native libraries to be work in both Node.js and browser environments.</>
+			<>Switches intelligently between native libraries to work in both Node.js and browser environments.</>
 		),
 	},
 	{
