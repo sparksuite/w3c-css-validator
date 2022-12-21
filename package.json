@@ -32,7 +32,9 @@
 		"url": "https://github.com/sparksuite/w3c-css-validator/issues"
 	},
 	"homepage": "https://sparksuite.github.io/w3c-css-validator/",
-	"dependencies": {},
+	"dependencies": {
+		"yarn": "^1.22.19"
+	},
 	"devDependencies": {
 		"@types/jest": "^26.0.20",
 		"@types/node": "^14.14.25",
