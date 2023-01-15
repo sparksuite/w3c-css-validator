@@ -2194,8 +2194,9 @@ v8-to-istanbul@^9.0.1:
     "@types/istanbul-lib-coverage" "^2.0.1"
     convert-source-map "^1.6.0"
 
-"w3c-css-validator@link:../..":
+"w3c-css-validator@file:/tmp/tmp-827-z7RWqwW96Rph/package-3yl11.tgz":
   version "1.3.1"
+  resolved "file:/tmp/tmp-827-z7RWqwW96Rph/package-3yl11.tgz#7c7a42ec65117a5cda2e67e800a40bdb0ec0af5c"
 
 walker@^1.0.8:
   version "1.0.8"
