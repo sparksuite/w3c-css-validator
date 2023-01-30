@@ -1,14 +1,14 @@
 //Imports
 import BadStatusError from './bad-status-error';
-import retrieveFromNode from './node';
+import retrieveInNode from './node';
 
 // Tests
-describe('#retrieveFromNode()', () => {
+describe('#retrieveInNode()', () => {
 	afterEach(() => new Promise<void>((resolve) => setTimeout(resolve, 1000)));
 
 	it('Retrieves the results from the W3C Validator API', async () => {
 		expect(
-			await retrieveFromNode(
+			await retrieveInNode(
 				'GET',
 				'?text=.foo%20%7B%20text-align%3A%20center%3B%20%7D&usermedium=all&warning=no&output=application/json&profile=css3',
 				3000
@@ -29,7 +29,7 @@ describe('#retrieveFromNode()', () => {
 
 	it('Rejects when the request takes longer than the timeout', async () => {
 		await expect(
-			retrieveFromNode(
+			retrieveInNode(
 				'GET',
 				'?text=.foo%20%7B%20text-align%3A%20center%3B%20%7D&usermedium=all&warning=no&output=application/json&profile=css3',
 				1
@@ -39,7 +39,7 @@ describe('#retrieveFromNode()', () => {
 
 	it('Rejects status codes other than 200-300', async () => {
 		try {
-			await retrieveFromNode('GET', `?usermedium=all&warning=no&output=application/json&profile=css3`, 3000);
+			await retrieveInNode('GET', `?usermedium=all&warning=no&output=application/json&profile=css3`, 3000);
 
 			throw new Error('This test should not proceed to this point');
 		} catch (error: unknown) {
@@ -56,7 +56,7 @@ describe('#retrieveFromNode()', () => {
 
 	it('Rejects unexpected errors', async () => {
 		await expect(
-			retrieveFromNode(
+			retrieveInNode(
 				'GET',
 				'?text=.foo%20%7B%20text-align%3A%20center%3B%20%7D&usermedium=all&warning=no&output=application/xml&profile=css3',
 				3000

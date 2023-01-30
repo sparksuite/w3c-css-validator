@@ -3,17 +3,17 @@
  */
 
 //Imports
-import retrieveFromBrowser from './browser';
+import retrieveInBrowser from './browser';
 import 'whatwg-fetch';
 import BadStatusError from './bad-status-error';
 
 // Tests
-describe('#retrieveFromBrowser()', () => {
+describe('#retrieveInBrowser()', () => {
 	afterEach(() => new Promise<void>((resolve) => setTimeout(resolve, 1000)));
 
 	it('Retrieves the results from the W3C Validator API', async () => {
 		expect(
-			await retrieveFromBrowser(
+			await retrieveInBrowser(
 				'GET',
 				'?text=.foo%20%7B%20text-align%3A%20center%3B%20%7D&usermedium=all&warning=no&output=application/json&profile=css3',
 				3000
@@ -34,7 +34,7 @@ describe('#retrieveFromBrowser()', () => {
 
 	it('Rejects when the request takes longer than the timeout', async () => {
 		await expect(
-			retrieveFromBrowser(
+			retrieveInBrowser(
 				'GET',
 				'?text=.foo%20%7B%20text-align%3A%20center%3B%20%7D&usermedium=all&warning=no&output=application/json&profile=css3',
 				1
@@ -44,7 +44,7 @@ describe('#retrieveFromBrowser()', () => {
 
 	it('Rejects status codes other than 200-300', async () => {
 		try {
-			await retrieveFromBrowser('GET', `?usermedium=all&warning=no&output=application/json&profile=css3`, 3000);
+			await retrieveInBrowser('GET', `?usermedium=all&warning=no&output=application/json&profile=css3`, 3000);
 
 			throw new Error('This test should not proceed to this point');
 		} catch (error: unknown) {
@@ -60,7 +60,7 @@ describe('#retrieveFromBrowser()', () => {
 
 	it('Rejects unexpected errors', async () => {
 		await expect(
-			retrieveFromBrowser(
+			retrieveInBrowser(
 				'GET',
 				'?text=.foo%20%7B%20text-align%3A%20center%3B%20%7D&usermedium=all&warning=no&output=application/xml&profile=css3',
 				3000
