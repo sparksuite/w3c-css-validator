@@ -13,10 +13,6 @@ module.exports = {
 	},
 	resolve: {
 		extensions: ['.ts', '.js'],
-		fallback: {
-			https: false,
-			util: false,
-		},
 	},
 	output: {
 		filename: 'bundle.js',
