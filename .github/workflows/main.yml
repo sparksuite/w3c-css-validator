@@ -93,9 +93,7 @@ jobs:
           node-version: lts/*
           cache: 'yarn'
           registry-url: 'https://registry.npmjs.org'
-      - run: yarn install --frozen-lockfile --prefer-offline
-      - run: yarn compile
-      - run: yarn --cwd ./website install --frozen-lockfile --prefer-offline
+      - run: yarn dev
       - run: yarn --cwd ./website build
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.0.0
