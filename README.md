@@ -9,7 +9,7 @@
 <a href="https://github.com/sparksuite/w3c-css-validator/blob/master/LICENSE"><img alt="license" src="https://img.shields.io/npm/l/w3c-css-validator"></a>
 </p>
 
-A modern package for validating CSS using [W3C’s public CSS validator service](https://jigsaw.w3.org/css-validator/). Its goal is to simplify and standardize the API that W3C exposes, so that it adheres to newer conventions and is intuitive and easy to use.
+A modern package for validating CSS using [W3C's public CSS validator service](https://jigsaw.w3.org/css-validator/). Its goal is to simplify and standardize the API that W3C exposes, so that it adheres to newer conventions and is intuitive and easy to use.
 
 - 📦 Written entirely in TypeScript
 - 🔬 Thoroughly tested
@@ -45,6 +45,14 @@ Validate some CSS:
 
 ```ts
 const result = await cssValidator.validateText('.foo { text-align: center; }');
+
+// Or with options
+const resultWithOptions = await cssValidator.validateText('.foo { text-align: center; }', {
+	profile: 'css3svg', // Validation profile (css3, css3svg, css2, etc.)
+	medium: 'print', // Media type
+	warningLevel: 3, // Return warnings
+	timeout: 5000, // Request timeout in ms
+});
 ```
 
 ## Documentation

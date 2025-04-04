@@ -1,6 +1,7 @@
 interface OptionsBase {
 	medium?: 'all' | 'braille' | 'embossed' | 'handheld' | 'print' | 'projection' | 'screen' | 'speech' | 'tty' | 'tv';
 	timeout?: number;
+	profile?: string;
 }
 
 export interface OptionsWithoutWarnings extends OptionsBase {

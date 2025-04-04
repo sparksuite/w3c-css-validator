@@ -34,6 +34,7 @@ async function validateURL(urlToBeValidated: string, options?: Options): Promise
 			url: urlToBeValidated,
 			medium: options?.medium,
 			warningLevel: options?.warningLevel,
+			profile: options?.profile,
 		},
 		options?.timeout ?? 10000
 	);

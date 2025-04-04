@@ -9,7 +9,7 @@ function buildRequestURLParameters(parameters: Extract<Parameters, { url: string
 		usermedium: parameters?.medium ?? 'all',
 		warning: parameters?.warningLevel ? parameters.warningLevel - 1 : 'no',
 		output: 'application/json',
-		profile: 'css3',
+		profile: parameters.profile ?? 'css3',
 	};
 
 	return `?${Object.entries(params)
