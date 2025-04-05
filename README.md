@@ -45,9 +45,6 @@ Validate some CSS:
 
 ```ts
 const result = await cssValidator.validateText('.foo { text-align: center; }');
-
-// With profile option
-const resultWithProfile = await cssValidator.validateText('.foo { text-align: center; }', { profile: 'css3svg' });
 ```
 
 ## Documentation
