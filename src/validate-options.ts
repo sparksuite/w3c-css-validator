@@ -18,6 +18,22 @@ const allowedMediums: Options['medium'][] = [
 // Define supported warning levels
 const allowedWarningLevels: Options['warningLevel'][] = [0, 1, 2, 3];
 
+// Define supported profiles
+const allowedProfiles: Options['profile'][] = [
+	'none',
+	'css1',
+	'css2',
+	'css21',
+	'css3',
+	'css3svg',
+	'svg',
+	'svgbasic',
+	'svgtiny',
+	'mobile',
+	'atsc-tv',
+	'tv',
+];
+
 // Helper function that validates the supported options
 function validateOptions(options?: Options): void {
 	if (options) {
@@ -38,6 +54,11 @@ function validateOptions(options?: Options): void {
 
 		if (options.timeout && options.timeout < 0) {
 			throw new Error('The timeout must be a positive integer');
+		}
+
+		// Validate profile option
+		if (options.profile && !allowedProfiles.includes(options.profile)) {
+			throw new Error(`The profile must be one of the following: ${allowedProfiles.join(', ')}`);
 		}
 	}
 }

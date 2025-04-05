@@ -1,6 +1,19 @@
 interface OptionsBase {
 	medium?: 'all' | 'braille' | 'embossed' | 'handheld' | 'print' | 'projection' | 'screen' | 'speech' | 'tty' | 'tv';
 	timeout?: number;
+	profile?:
+		| 'none'
+		| 'css1'
+		| 'css2'
+		| 'css21'
+		| 'css3'
+		| 'css3svg'
+		| 'svg'
+		| 'svgbasic'
+		| 'svgtiny'
+		| 'mobile'
+		| 'atsc-tv'
+		| 'tv';
 }
 
 export interface OptionsWithoutWarnings extends OptionsBase {

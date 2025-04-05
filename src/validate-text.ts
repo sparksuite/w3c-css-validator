@@ -34,6 +34,7 @@ async function validateText(textToBeValidated: string, options?: Options): Promi
 			text: textToBeValidated,
 			medium: options?.medium,
 			warningLevel: options?.warningLevel,
+			profile: options?.profile,
 		},
 		options?.timeout ?? 10000
 	);

@@ -10,7 +10,7 @@ const buildFormData = (parameters: Extract<Parameters, { text: string }>): strin
 
 	const pieces: string[] = [
 		`Content-Disposition: form-data; name="text"${CRLF}${CRLF}${parameters.text}${CRLF}`,
-		`Content-Disposition: form-data; name="profile"${CRLF}${CRLF}css3${CRLF}`,
+		`Content-Disposition: form-data; name="profile"${CRLF}${CRLF}${parameters.profile ?? 'css3'}${CRLF}`,
 		`Content-Disposition: form-data; name="output"${CRLF}${CRLF}application/json${CRLF}`,
 		`Content-Disposition: form-data; name="usermedium"${CRLF}${CRLF}${parameters.medium ?? 'all'}${CRLF}`,
 		`Content-Disposition: form-data; name="warning"${CRLF}${CRLF}${
