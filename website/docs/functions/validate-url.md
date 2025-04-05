@@ -8,12 +8,12 @@ This function is used to validate external CSS via a URL.
 
 You can customize the behavior with options, passed as the second argument.
 
-| Option         | Default | Possible values                                                                                  |
-| :------------- | :------ | :----------------------------------------------------------------------------------------------- |
-| `medium`       | `all`   | `all`, `braille`, `embossed`, `handheld`, `print`, `projection`, `screen`, `speech`, `tty`, `tv` |
-| `warningLevel` | `0`     | `0`, `1`, `2`, `3`                                                                               |
-| `timeout`      | `10000` | `integer`                                                                                        |
-| `profile`      | `css3`  | `string` (e.g., `css3`, `css3svg`, `css2`)                                                       |
+| Option         | Default | Possible values                                                                                             |
+| :------------- | :------ | :---------------------------------------------------------------------------------------------------------- |
+| `medium`       | `all`   | `all`, `braille`, `embossed`, `handheld`, `print`, `projection`, `screen`, `speech`, `tty`, `tv`            |
+| `warningLevel` | `0`     | `0`, `1`, `2`, `3`                                                                                          |
+| `timeout`      | `10000` | `integer`                                                                                                   |
+| `profile`      | `css3`  | `none`, `css1`, `css2`, `css21`, `css3`, `css3svg`, `svg`, `svgbasic`, `svgtiny`, `mobile`, `atsc-tv`, `tv` |
 
 | Option         | Explanation                                                                                                                          |
 | :------------- | :----------------------------------------------------------------------------------------------------------------------------------- |
