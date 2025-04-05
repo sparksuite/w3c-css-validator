@@ -18,7 +18,7 @@ You can customize the behavior with options, passed as the second argument.
 | Option         | Explanation                                                                                                                          |
 | :------------- | :----------------------------------------------------------------------------------------------------------------------------------- |
 | `medium`       | The equivalent of the `@media` rule, applied to all of the CSS                                                                       |
-| `warningLevel` | `0` means don't return any warnings; `1`, `2`, `3` will return warnings (if any), with higher numbers corresponding to more warnings |
+| `warningLevel` | `0` means don’t return any warnings; `1`, `2`, `3` will return warnings (if any), with higher numbers corresponding to more warnings |
 | `timeout`      | The time in milliseconds after which the request to the W3C API will be terminated and an error will be thrown                       |
 | `profile`      | Specifies the validation profile to use for CSS validation                                                                           |
 
