@@ -13,7 +13,6 @@ describe('#validateOptions()', () => {
 				medium: 'braille',
 				warningLevel: 1,
 				timeout: 1000,
-				profile: 'css3svg',
 			})
 		).not.toThrow();
 	});
@@ -35,10 +34,5 @@ describe('#validateOptions()', () => {
 	it('Complains about non-integer times', async () => {
 		expect(() => validateOptions({ timeout: Infinity })).toThrow('The timeout must be an integer');
 		expect(() => validateOptions({ timeout: 400.1 })).toThrow('The timeout must be an integer');
-	});
-
-	it('Complains about invalid profile', async () => {
-		// @ts-expect-error: We're trying to force an error here
-		expect(() => validateOptions({ profile: 'fake' })).toThrow('The profile must be one of the following:');
 	});
 });
