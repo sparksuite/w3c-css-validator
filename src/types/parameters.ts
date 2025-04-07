@@ -3,7 +3,7 @@ import { Options } from './options';
 interface ParametersBase {
 	medium: Options['medium'];
 	warningLevel: Options['warningLevel'];
-	profile?: Options['profile'];
+	profile: Options['profile'];
 }
 
 interface TextParameters extends ParametersBase {
