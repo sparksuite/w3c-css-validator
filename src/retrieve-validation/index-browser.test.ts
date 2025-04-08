@@ -21,6 +21,7 @@ describe('#retrieveValidation()', () => {
 				url: 'https://raw.githubusercontent.com/sparksuite/w3c-css-validator/master/public/css/valid.css',
 				medium: undefined,
 				warningLevel: undefined,
+				profile: undefined,
 			},
 			3000
 		);
