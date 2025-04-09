@@ -20,7 +20,7 @@ Option | Explanation
 `medium` | The equivalent of the `@media` rule, applied to all of the CSS
 `warningLevel` | `0` means don’t return any warnings; `1`, `2`, `3` will return warnings (if any), with higher numbers corresponding to more warnings
 `timeout` | The time in milliseconds after which the request to the W3C API will be terminated and an error will be thrown
-`profile` | Specifies the validation profile to use for CSS validation
+`profile` | The CSS profile to use for validation, which specifies the available CSS features; [learn more](https://jigsaw.w3.org/css-validator/manual.html#paramprofile)
 
 ```ts
 const result = await cssValidator.validateText(css, {
