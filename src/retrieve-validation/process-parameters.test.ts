@@ -16,6 +16,7 @@ describe('#processParameters()', () => {
 			url: 'https://raw.githubusercontent.com/sparksuite/w3c-css-validator/master/public/css/valid.css',
 			medium: undefined,
 			warningLevel: undefined,
+			profile: undefined,
 		};
 
 		expect(processParameters('GET', parameters)).toBe(buildRequestURLParameters(parameters));
@@ -26,6 +27,7 @@ describe('#processParameters()', () => {
 			text: '.foo { text-align: center; }',
 			medium: undefined,
 			warningLevel: undefined,
+			profile: undefined,
 		};
 
 		expect(processParameters('POST', parameters)).toBe(buildFormData(parameters));
@@ -36,6 +38,7 @@ describe('#processParameters()', () => {
 			text: '.foo { text-align: center; }',
 			medium: undefined,
 			warningLevel: undefined,
+			profile: undefined,
 		};
 
 		// @ts-expect-error We are trying to throw an error here
@@ -49,6 +52,7 @@ describe('#processParameters()', () => {
 			text: '.foo { text-align: center; }',
 			medium: undefined,
 			warningLevel: undefined,
+			profile: undefined,
 		};
 
 		expect(() => processParameters('GET', parameters)).toThrow(
@@ -61,6 +65,7 @@ describe('#processParameters()', () => {
 			url: 'https://raw.githubusercontent.com/sparksuite/w3c-css-validator/master/public/css/valid.css',
 			medium: undefined,
 			warningLevel: undefined,
+			profile: undefined,
 		};
 
 		expect(() => processParameters('POST', parameters)).toThrow(
