@@ -77,7 +77,14 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - run: yarn install --frozen-lockfile --prefer-offline
       - run: yarn compile
-      - run: npm publish
+      - run: |
+          if [[ "$GITHUB_REF" =~ -alpha ]]; then
+            npm publish --tag alpha
+          elif [[ "$GITHUB_REF" =~ -beta ]]; then
+            npm publish --tag beta
+          else
+            npm publish
+          fi
   deploy:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
