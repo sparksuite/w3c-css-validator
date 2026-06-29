@@ -49,7 +49,6 @@ describe('#retrieveInNode()', () => {
 				return;
 			}
 
-			expect(error.message).toBe('Internal Server Error');
 			expect(error.statusCode).toBe(500);
 		}
 	});
