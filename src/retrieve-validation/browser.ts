@@ -3,6 +3,13 @@ import { W3CCSSValidatorResponse } from '.';
 import BadStatusError from './bad-status-error';
 import { boundaryLength } from './get-boundary';
 
+// Extend the window with optional configuration
+declare global {
+	interface Window {
+		CSS_VALIDATOR_URL?: string;
+	}
+}
+
 // Utility function for retrieving response from W3C CSS Validator in a browser environment
 const retrieveInBrowser = async (
 	method: 'GET' | 'POST',
@@ -20,8 +27,12 @@ const retrieveInBrowser = async (
 	// Attempt to fetch CSS validation, catching the abort error to handle specially
 	let res: Response | null = null;
 
+	// Initialize
+	const baseURL = window.CSS_VALIDATOR_URL || 'https://jigsaw.w3.org/css-validator';
+
+	// Wrap in a try/catch
 	try {
-		res = await fetch(`https://jigsaw.w3.org/css-validator/validator${method === 'GET' ? parameters : ''}`, {
+		res = await fetch(`${baseURL}/validator${method === 'GET' ? parameters : ''}`, {
 			method,
 			signal: controller.signal,
 			...(method === 'POST'
