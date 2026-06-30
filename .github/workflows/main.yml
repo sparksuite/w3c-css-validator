@@ -29,6 +29,9 @@ jobs:
   test:
     name: Run tests
     runs-on: ubuntu-latest
+    env:
+      PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: 'true'
+      CSS_VALIDATOR_URL: 'http://localhost:8081/css-validator'
     strategy:
       matrix:
         node-version: [lts/*, current]
@@ -40,6 +43,18 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'yarn'
       - run: yarn install --frozen-lockfile --prefer-offline
+      - run: docker build -t css-builder .
+      - run: docker run -d -p 8081:8080 -i css-builder
+      - name: Wait for Tomcat to respond
+        run: |
+          echo "Waiting for web server..."
+          timeout 30s bash -c '
+            until curl -sI http://localhost:8081 | grep -q "200\|404\|403"; do
+              sleep 1
+            done
+          '
+          echo "Server is responding!"
+      - run: curl http://localhost:8081
       - run: yarn test
       - name: Codecov
         uses: codecov/codecov-action@v3
