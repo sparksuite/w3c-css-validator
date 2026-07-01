@@ -62,4 +62,4 @@ EXPOSE 8080
 
 
 # Entrypoint
-ENTRYPOINT ["sh", "./bin/startup.sh"]
+ENTRYPOINT ["./bin/catalina.sh", "run"]
