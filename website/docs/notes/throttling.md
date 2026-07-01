@@ -5,4 +5,5 @@ title: Throttling
 You should not call the validator more often than **1 req/sec**. From W3C’s [manual](https://jigsaw.w3.org/css-validator/manual.html):
 
 > If you wish to call the validator programmatically for a batch of documents, please make sure that your script will sleep for at least 1 second between requests. The CSS Validation service is a free, public service for all, your respect is appreciated.
-> This can be omitted if you [provide your own service](alternative-validator-service)
+
+_Note: if you need to make requests more quickly, consider hosting your own [alternative validator service](alternative-validator-service)._
