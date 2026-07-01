@@ -8,6 +8,7 @@
 		"dist/"
 	],
 	"browser": {
+		"http": false,
 		"https": false,
 		"util": false
 	},
