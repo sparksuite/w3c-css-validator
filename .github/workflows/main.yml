@@ -54,7 +54,6 @@ jobs:
             done
           '
           echo "Server is responding!"
-      - run: curl http://localhost:8081
       - run: yarn test
       - name: Codecov
         uses: codecov/codecov-action@v3
