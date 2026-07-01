@@ -32,6 +32,7 @@ jobs:
     env:
       PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: 'true'
       CSS_VALIDATOR_URL: 'http://localhost:8081/css-validator'
+      PUPPETEER_EXEC_PATH: '/usr/bin/google-chrome'
     strategy:
       matrix:
         node-version: [lts/*, current]

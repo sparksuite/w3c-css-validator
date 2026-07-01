@@ -6,7 +6,7 @@ module.exports = {
 		port: 8080,
 	},
 	launch: {
-		executablePath: process.env.PUPPETEER_EXEC_PATH || '/usr/bin/google-chrome',
+		executablePath: process.env.PUPPETEER_EXEC_PATH,
 		args: ['--no-sandbox', '--disable-setuid-sandbox'],
 	},
 };
