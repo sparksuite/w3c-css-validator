@@ -24,13 +24,11 @@ const retrieveInBrowser = async (
 		controller.abort();
 	}, timeout);
 
-	// Attempt to fetch CSS validation, catching the abort error to handle specially
-	let res: Response | null = null;
-
 	// Initialize
 	const baseURL = window.CSS_VALIDATOR_URL || 'https://jigsaw.w3.org/css-validator';
+	let res: Response | null = null;
 
-	// Wrap in a try/catch
+	// Attempt to fetch CSS validation, catching the abort error to handle specially
 	try {
 		res = await fetch(`${baseURL}/validator${method === 'GET' ? parameters : ''}`, {
 			method,
