@@ -14,10 +14,6 @@ module.exports = {
 	},
 	resolve: {
 		extensions: ['.ts', '.js'],
-		fallback: {
-			http: false,
-			url: false,
-		},
 	},
 	output: {
 		filename: 'bundle.js',
