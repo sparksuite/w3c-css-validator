@@ -18,7 +18,7 @@ describe('#retrieveInBrowser()', () => {
 
 	it('Retrieves the results from the W3C Validator API', async () => {
 		if (process?.env?.CSS_VALIDATOR_URL) {
-			window.CSS_VALIDATOR_URL = process?.env?.CSS_VALIDATOR_URL;
+			window.CSS_VALIDATOR_URL = process.env.CSS_VALIDATOR_URL;
 		}
 		expect(
 			await retrieveInBrowser(
@@ -42,7 +42,7 @@ describe('#retrieveInBrowser()', () => {
 
 	it('Rejects when the request takes longer than the timeout', async () => {
 		if (process?.env?.CSS_VALIDATOR_URL) {
-			window.CSS_VALIDATOR_URL = process?.env?.CSS_VALIDATOR_URL;
+			window.CSS_VALIDATOR_URL = process.env.CSS_VALIDATOR_URL;
 		}
 
 		await expect(
@@ -57,7 +57,7 @@ describe('#retrieveInBrowser()', () => {
 	it('Rejects status codes other than 200-300', async () => {
 		try {
 			if (process?.env?.CSS_VALIDATOR_URL) {
-				window.CSS_VALIDATOR_URL = process?.env?.CSS_VALIDATOR_URL;
+				window.CSS_VALIDATOR_URL = process.env.CSS_VALIDATOR_URL;
 			}
 
 			await retrieveInBrowser('GET', `?usermedium=all&warning=no&output=application/json&profile=css3`, 3000);
@@ -76,7 +76,7 @@ describe('#retrieveInBrowser()', () => {
 
 	it('Rejects unexpected errors', async () => {
 		if (process?.env?.CSS_VALIDATOR_URL) {
-			window.CSS_VALIDATOR_URL = process?.env?.CSS_VALIDATOR_URL;
+			window.CSS_VALIDATOR_URL = process.env.CSS_VALIDATOR_URL;
 		}
 
 		await expect(
