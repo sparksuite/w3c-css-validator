@@ -25,7 +25,7 @@ module.exports = {
 	},
 	plugins: [
 		new webpack.DefinePlugin({
-			'__CSS_VALIDATOR_URL__': JSON.stringify(process.env.CSS_VALIDATOR_URL),
+			__CSS_VALIDATOR_URL__: JSON.stringify(process.env.CSS_VALIDATOR_URL),
 		}),
 	],
 };
