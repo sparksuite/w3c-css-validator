@@ -20,6 +20,7 @@ describe('#retrieveInBrowser()', () => {
 		if (process?.env?.CSS_VALIDATOR_URL) {
 			window.CSS_VALIDATOR_URL = process.env.CSS_VALIDATOR_URL;
 		}
+
 		expect(
 			await retrieveInBrowser(
 				'GET',
