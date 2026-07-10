@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-//Imports
+// Imports
 import retrieveInBrowser from './browser';
 import 'whatwg-fetch';
 import BadStatusError from './bad-status-error';
