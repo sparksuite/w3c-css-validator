@@ -8,6 +8,7 @@
 		"dist/"
 	],
 	"browser": {
+		"http": false,
 		"https": false,
 		"util": false
 	},
@@ -18,7 +19,8 @@
 		"format": "eslint --fix --ext .js,.ts,.jsx,.tsx ./ && prettier --write '**/*.{ts,js,tsx,jsx,json,css,html,yml}'",
 		"clean": "git clean -X -d --force && find . -type d -empty -delete",
 		"precompile": "rm -rf dist/",
-		"compile": "tsc --project tsconfig.build.json"
+		"compile": "tsc --project tsconfig.build.json",
+		"server": "docker build -t css-builder ./testing-validator-image && docker run -d -p 8081:8080 -it css-builder"
 	},
 	"repository": {
 		"type": "git",
