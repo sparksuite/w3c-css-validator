@@ -95,6 +95,7 @@ module.exports = {
 				return {
 					resolve: {
 						fallback: {
+							http: false,
 							https: false,
 							util: false,
 						},
