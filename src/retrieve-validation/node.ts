@@ -1,4 +1,5 @@
 // Imports
+import * as http from 'http';
 import * as https from 'https';
 import { W3CCSSValidatorResponse } from '.';
 import BadStatusError from './bad-status-error';
@@ -12,9 +13,13 @@ const retrieveInNode = async (
 	timeout: number
 ): Promise<W3CCSSValidatorResponse['cssvalidation']> => {
 	return new Promise((resolve, reject) => {
+		// Initialize
+		const baseURL = process.env.CSS_VALIDATOR_URL || 'https://jigsaw.w3.org/css-validator';
+		const request = baseURL.startsWith('https://') ? https.request : http.request;
+
 		// Attempt to fetch CSS validation
-		const req = https.request(
-			`https://jigsaw.w3.org/css-validator/validator${method === 'GET' ? parameters : ''}`,
+		const req = request(
+			`${baseURL}/validator${method === 'GET' ? parameters : ''}`,
 			{
 				method,
 				timeout,
