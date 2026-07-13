@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
 	entry: './src/index.ts',
@@ -18,4 +19,9 @@ module.exports = {
 		filename: 'bundle.js',
 		path: path.resolve(__dirname, 'dist'),
 	},
+	plugins: [
+		new webpack.DefinePlugin({
+			__CSS_VALIDATOR_URL__: JSON.stringify(process.env.CSS_VALIDATOR_URL),
+		}),
+	],
 };
