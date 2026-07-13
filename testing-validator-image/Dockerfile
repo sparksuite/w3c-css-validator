@@ -44,9 +44,6 @@ RUN ant war
 RUN cp /tmp/css-validator/css-validator.war /tmp/apache-tomcat-9.0.119/webapps/
 WORKDIR /tmp/apache-tomcat-9.0.119
 
-# Make the validator run forever
-RUN sed -i '$ s/$/ \& \/bin\/bash/' ./bin/startup.sh
-
 # Expose port
 EXPOSE 8080
 
