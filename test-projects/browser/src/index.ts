@@ -8,6 +8,14 @@ import {
 	ValidateURLResultWithWarnings,
 } from '../../../dist/types/result';
 
+// Declare types
+declare global {
+	interface Window {
+		CSS_VALIDATOR_URL?: string;
+	}
+}
+declare const __CSS_VALIDATOR_URL__: string;
+
 // Wait until DOM content is available to attempt to make changes
 document.addEventListener('DOMContentLoaded', () => {
 	// Set flag to see if page loaded as expected
@@ -80,6 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	// Handle makeCall clicks
 	makeCall.addEventListener('click', () => {
+		window.CSS_VALIDATOR_URL = __CSS_VALIDATOR_URL__;
 		const warningLevel = Number(warningLevelSelect.value);
 		const method = methodSelect.value as keyof typeof cssValidator;
 
