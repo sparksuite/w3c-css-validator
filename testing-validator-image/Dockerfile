@@ -27,7 +27,7 @@ RUN update-alternatives --install "/usr/bin/ant" "ant" "/opt/ant/bin/ant" 1 && \
    update-alternatives --set "ant" "/opt/ant/bin/ant" 
 
 # Download and install Tomcat
-RUN wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.119/bin/apache-tomcat-9.0.119.tar.gz
+RUN wget https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.119/bin/apache-tomcat-9.0.119.tar.gz
 RUN tar -xf apache-tomcat-9.0.119.tar.gz
 
 # Download and extract W3C CSS Validator
