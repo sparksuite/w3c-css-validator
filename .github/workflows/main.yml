@@ -41,7 +41,7 @@ jobs:
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ matrix.node-version == 'current' && '*' || matrix.node-version }} # LATER: Revert to `${{ matrix.node-version }}` when https://github.com/actions/setup-node/pull/1668 is released and incorporated
           cache: 'yarn'
       - run: yarn install --frozen-lockfile --prefer-offline
       - run: docker build -t css-builder ./testing-validator-image
